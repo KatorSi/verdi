@@ -1,44 +1,37 @@
 <?php /** @var array $data */?>
 <div class="content-header">
     <div class="content-header-top-menu">
-        <ul>
-            <li>Композиторы</li>
-            <li class="active">Афиша</li>
-            <li>
-                <span class="title title-big">Музыкальный портал</span>
-            </li>
-            <li>Полотно времени</li>
-            <li>Справочники</li>
-        </ul>
+        <span class="title title-big">Афиша</span>
+        <div class="btn-back" data-backfunc="customBackFunc"><a href="<?php echo \Config::$host . (isset($data['back']) ? $data['back'] : '') ?>"> &lt;&lt;&nbsp;назад</a></div>
+    </div>
+    <div class="row sub-top-menu">
+            <div class="col-lg-6 sub-top-menu-item">
+            <span>Композитор</span>
+            <select name="composer" id="composer" class="poster_select">
+                <?php foreach ($data['composers'] as $composer) : ?>
+                <option value="<?= $composer['id'] ?>"><?= $composer['firstName'].' '.$composer['lastName'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            </div>
+        <div class="col-lg-6 sub-top-menu-item">
+            <span>Произведения</span>
+            <select name="composer" id="composer" class="poster_select">
+                <?php foreach ($data['composers'] as $composer) : ?>
+                <option value="<?= $composer['id'] ?>"><?= $composer['firstName'].' '.$composer['lastName'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
     </div>
 </div>
-<?php //var_dump($data); ?>
-<a href="<?= \Config::$host . 'poster' ?>">Афиша</a>
-{*
 <div class="content-body">
     <div id="target">
         <table class="table table-default main-table">
             <thead>
             <tr>
-                <td class="year birthday-year" data-sort="asc">Год рожд.</td>
-                <td class="year deathday-year">Год смерти</td>
-                <td style="width: 215px;">Композиторы</td>
-                <td style="width: 120px;">Страна <select name="country" id="country" class="select_custom">
-                        <option value="all">Все</option>
-                        <?php foreach ($data['countries'] as $country) : ?>
-                        <option value="<?= $country['id'] ?>"><?= $country['title'] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </td>
-                <td style="width: 180px;">Город рождения</td>
-                <td style="width: 180px;">Муз. стиль <select name="genre" id="genre" class="select_custom">
-                        <option value="all">Все</option>
-                        <?php foreach ($data['genres'] as $genre) : ?>
-                        <option value="<?= $genre['id'] ?>"><?= $genre['title'] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </td>
-                <td data-sorter="none">Основные направления</td>
+                <td class="date" data-sort="asc">Дата</td>
+                <td class="author"></td>
+                <td style="width: 215px;">Название произведения</td>
+                <td style="width: 180px;">Театр</td>
             </tr>
             </thead>
         </table>
@@ -91,4 +84,4 @@
     </div>
 </div>
 
-*}
+<?php //var_dump($data); ?>

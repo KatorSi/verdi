@@ -49,10 +49,8 @@ class Config
      */
     public static $routes = [
         'Poster'  => [
-            'composer/<i:composerId>'                   => 'biography',
-            'composer/<i:composerId>/<m:method>'        => '',
-            'composer/<i:composerId>/<m:method>/<i:id>' => '',
-            'composer/<i:composerId>/operas/<i:id>/<s:page>' => 'operas',
+            'poster'            => '',
+            'poster/<m:method>' => '',
         ],
         'Composer'  => [
             'composer/<i:composerId>'                   => 'biography',

@@ -10,6 +10,7 @@
 }
 html, body {
     height: 100%;
+    line-height: normal;
 }
 body {
     font-family: Verdana,Tahoma,Arial,sans-serif;
@@ -48,6 +49,13 @@ ul > li{
 }
 .title-big {
     font-size: 18pt;
+}
+.sub-top-menu {
+    padding-bottom: 10px;
+}
+.poster_select {
+    min-height: 25px;
+    border-radius: 5px;
 }
 
 .opera-title{
@@ -152,9 +160,11 @@ ul > li{
     border: 1px solid #ccc;
 }
 .table {
+    border-top: solid 1px #ddd;
     border-collapse: collapse;
     width: 100%;
     table-layout: fixed;
+    margin-bottom: 0;
 }
 .table-default thead td, .table-default thead th {
     background-color: #f2faff;

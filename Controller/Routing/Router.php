@@ -25,13 +25,11 @@ class Router
     {
         return isset(\Config::$routes[$controller]) && !empty(\Config::$routes[$controller]) ?
             \Config::$routes[$controller] :
-            //false;
-            Config::$defaultRouteController;
+            false;
     }
 
     public function dispatchURI()
     {
-        error_log($_GET['route'].PHP_EOL, 3, Config::$errorLog);
         $routeData = $this->getRouteData($_GET);
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $this->getController->getResponse($routeData);
@@ -56,20 +54,18 @@ class Router
         foreach ($routeArray as $part) {
             if (!is_numeric($part)) {
                 $controller = ucfirst(strtolower($part));
-                error_log($controller.PHP_EOL, 3, Config::$errorLog);
+                //error_log('Controller: '.$controller.PHP_EOL, 3, Config::$errorLog);
                 break;
             }
         }
 
         $routeMatches = $this->getRouteForController($controller);
-        error_log($routeMatches.PHP_EOL, 3, Config::$errorLog);
 
         if (false !== $routeMatches) {
 
             $routeData = [];
 
             foreach ($routeMatches as $routePattern => $method) {
-
 
                 $routePattern = preg_replace('/\/$/', '', $routePattern);
                 $request['route'] = preg_replace('/\/$/', '', mb_strtolower($request['route'])) . '/';
@@ -110,10 +106,12 @@ class Router
                     unset($routeData['data']['route']);
                 }
             }
-
+            foreach ($routeData as $key => $value) {
+                error_log('routeData: '.$key.' => '.$value.PHP_EOL, 3, Config::$errorLog);
+            }
             return !empty($routeData) ? $routeData : false;
         }
-
+        error_log('return false(',3, Config::$errorLog);
         return false;
     }
 }

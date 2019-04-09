@@ -3,7 +3,7 @@
     <div class="content-header-top-menu">
         <ul>
             <li class="active"><a href="<?= \Config::$host . 'home/index' ?>">Композиторы</a></li>
-            <li><a href="<?= \Config::$host . 'home/poster' ?>">Афиша</a></li>
+            <li><a href="<?= \Config::$host . 'poster' ?>">Афиша</a></li>
             <li>
                 <span class="title title-big">Музыкальный портал</span>
             </li>
