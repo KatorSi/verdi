@@ -1,0 +1,168 @@
+.full-width-label {
+    font-size: 0;
+}
+.full-width-label .custom-radio-check {
+    width: 50%;
+    font-size: 16px;
+    margin-right: 0;
+}
+.custom-radio-check label {
+    cursor: pointer;
+    width: 100%;
+}
+.custom-radio-check input {
+    display: none;
+}
+.custom-radio-check span {
+    display: block;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    padding: 5px;
+    color: #ccc;
+    transition: all ease .4s;
+    -webkit-transition: all ease .4s;
+    -moz-transition: all ease .4s;
+    -o-transition: all ease .4s;
+    border: 1px solid #ced4da;
+    height: 40px;
+    line-height: 30px;
+}
+.custom-radio-check span:after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0px;
+    z-index: -1;
+    transition: all ease .4s;
+    -webkit-transition: all ease .4s;
+    -moz-transition: all ease .4s;
+    -o-transition: all ease .4s;
+    background-color: #28a745;
+}
+.custom-radio-check:first-child span {
+    border-right: 0;
+}
+.custom-radio-check:last-child span {
+    border-left: 0;
+}
+.custom-radio-check:first-child span:after {
+    right: 0;
+}
+.custom-radio-check:last-child span:after {
+    left: 0;
+}
+.custom-radio-check input:checked + span {
+    color: #fff;
+}
+.custom-radio-check input:checked + span:after {
+    width: 100%;
+}
+.modal-body .card {
+    -webkit-box-shadow: 0px 0px 0px transparent;
+    box-shadow: 0px 0px 0px transparent;
+}
+.has-input-autocomplete .dropdown-menu {
+    left: 5px;
+    right: 5px;
+    max-height: 150px;
+    overflow-x: auto;
+}
+.list-group-item > a {
+    color: #495057;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+.badge-button {
+    cursor: pointer;
+}
+#toggle-btn {
+    display:none;
+}
+.alert_custom {
+    font-size: 1em;
+    font-weight: bold;
+    color: red;
+}
+#message {
+    text-align: center;
+    padding: 0;
+}
+.fl_right {
+    float: right;
+}
+.custom_filetype {
+    display: inline-block;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    margin-top: 5px;
+
+}
+.empty_file {
+    display: block;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.badge_custom {
+    display: inline-block;
+    padding: 5px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    font-size: .8em;
+}
+/* LOADER */
+
+.modal_loader {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 )
+    url('http://i.stack.imgur.com/FhHRx.gif')
+    50% 50%
+    no-repeat;
+}
+
+body.loading .modal_loader {
+    overflow: hidden;
+    display: block;
+}
+
+@media screen and (max-width: 640px) {
+    #toggle-btn {
+        display: block;
+    }
+}
+
+[data-toggle="collapse"] .fa:before {
+    content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
+}
+
+button.badge.badge-pill{
+    border: 0;
+    font-size: 12px;
+}
+
+button.badge.badge-pill .fa{
+    vertical-align: middle;
+}
+
+
+.table .col-1{ width:  8.333333% !important;}
+.table .col-2{ width: 16.666667% !important;}
+.table .col-5{ width: 41.666667% !important;}

@@ -1,0 +1,238 @@
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    height: 100%;
+}
+body {
+    font-family: Verdana,Tahoma,Arial,sans-serif;
+    background-color: #353535;
+    font-size: 14px;
+    color: #323232;
+}
+ul {
+    list-style: disc;
+    padding: 0;
+    margin: 0;
+}
+ul > li{
+    margin-left: 20px;
+    text-indent: 0;
+    margin-bottom: 10px;
+}
+.active {
+    background-color: #ffa !important;
+}
+.no_active {
+    color: gray !important;
+}
+.title {
+    color: #650012;
+    font-weight: bold;
+}
+.title-xs {
+    font-size: 13px;
+}
+.title-medium {
+    font-size: 16px;
+}
+.title-small {
+    font-size: 14px;
+}
+.title-big {
+    font-size: 18pt;
+}
+
+.opera-title{
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.opera-info{
+    margin-top: 10px;
+    color: #650012;
+    font-size: 18px;
+}
+.opera-content{
+    padding-bottom: 10px;
+    overflow-y: auto;
+    text-indent: 20px;
+}
+.page-wrap > div {
+    background-color: #fff;
+}
+.page-wrap {
+    width: 1150px;
+    height: 99%;
+    height: calc(100% - 5px);
+    margin: 0 auto;
+    padding-top: 5px;
+    border-radius: 4px;
+    position: relative;
+}
+.page-wrap-header {
+    height: 165px;
+    background-image: url(images/ph-bg-cut.jpeg);
+    background-position: bottom center;
+}
+.page-wrap-footer {
+    height: 44px;
+}
+.page-wrap-body {
+    height: 80%;
+    height: calc(100% - 209px);
+}
+.content-section {
+    height: 100%;
+    position: relative;
+}
+.table-fixer {
+    overflow-y: scroll;
+    height: calc(100% - 50px);
+}
+.content-header {
+    text-align: center;
+    position: relative;
+}
+.content-header ul {
+    font-size: 0;
+}
+.content-header ul li {
+    display: inline-block;
+    font-size: 16px;
+}
+.content-header ul li {
+    padding: 5px;
+    margin: 0 15px;
+}
+.content-header-top-menu {
+    margin-bottom: 10px;
+}
+.content-body {
+    height: calc(100% - 55px);
+}
+.content-body.opera {
+    padding: 0 30px;
+    overflow-y: auto;
+    max-height: calc(100% - 160px);
+    position: relative;
+}
+.page-wrap-footer > ul {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+.page-wrap-footer > ul > li {
+    display: table-cell;
+    text-align: center;
+    line-height: 42px;
+}
+.page-wrap-footer > ul > li > a {
+    display: block;
+    background-color: #ece9e9;
+    border: 1px solid grey;
+    color: #323232;
+    border-radius: 4px;
+    height: 100%;
+    text-decoration: none;
+}
+.table td, .table th {
+    font-size: 13px;
+    border: 1px solid #ccc;
+}
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+.table-default thead td, .table-default thead th {
+    background-color: #f2faff;
+    text-align: center;
+}
+
+.main-table thead td:not([data-sort]):not([data-sorter="none"]){
+    /*background:  #f2faff url(https://v6.spb.ru/translate/statistics/images/sort-both.png) right 3px  no-repeat;*/
+
+    /*background-size: 15px;*/
+}
+
+.main-table thead td[data-sort="desc"]:not([data-sorter="none"]){
+    /*background:  #f2faff url(https://v6.spb.ru/translate/statistics/images/sort-asc.png) right 3px  no-repeat;*/
+
+    /*background-size: 15px;*/
+    background-color: #ffa;
+}
+
+.main-table thead td[data-sort="asc"]:not([data-sorter="none"]){
+    /*background:  #f2faff url(https://v6.spb.ru/translate/statistics/images/sort-desc.png) right 3px  no-repeat;*/
+
+    /*background-size: 15px;*/
+
+    background-color: #ffa;
+}
+
+.table-default td {
+    padding: 5px
+}
+
+.table td.year{
+    width: 75px;
+    text-align: center;
+}
+/*my_style*/
+.select_custom {
+    display: block;
+    width: 100%;
+}
+.hidden {
+    display:none;
+}
+.btn-back {
+    font-family: Arial;
+    font-weight: bold;
+    color: #650012;
+    border: 1px solid #ccc;
+    background-color: #ffa !important;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 4
+}
+
+.btn-back a {
+    color: #650012;
+}
+.btn-back a:hover {
+    text-decoration: none;
+}
+.composers_link {
+    color: black;
+    display: block;
+    white-space: nowrap;
+}
+.composers_link:hover {
+    text-decoration: none;
+    color: black;
+}
+li.active a {
+    color:black;
+    text-decoration: none;
+}
+
+
+

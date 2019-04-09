@@ -1,0 +1,8 @@
+
+.opera .card-footer{ border-bottom: 1px solid #eeeeee}
+
+.opera .opera-files input.form-control[type="file"]{display: none;}
+.opera .opera-files .card{border-width: 1px;}
+.opera .opera-files button{ border: 0;}
+.opera .opera-files .list-group .list-group-item .progress{ width: 100%; margin: 0 10px; }
+.opera .opera-files .list-group .list-group-item .file-title{ display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
