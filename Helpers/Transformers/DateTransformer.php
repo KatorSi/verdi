@@ -11,6 +11,32 @@ namespace Helpers\Transformers;
 
 class DateTransformer
 {
+
+    const MONTH = [
+        '',
+        'январь',
+        'февраль',
+        'март',
+        'апрель',
+        'май',
+        'июнь',
+        'июль',
+        'август',
+        'сентябрь',
+        'октябрь',
+        'ноябрь',
+        'декабрь'
+    ];
+    const WEEKSDAY = [
+        'Mon' => 'пн',
+        'Tue' => 'вт',
+        'Wed' => 'ср',
+        'Thu' => 'чт',
+        'Fri' => 'пт',
+        'Sat' => 'сб',
+        'Sun' => 'вс',
+    ];
+
     public static function transform($data)
     {
         if (isset($data['birthDate']) and isset($data['deathDate'])) {
@@ -25,5 +51,16 @@ class DateTransformer
     {
         $resultDate = new \DateTime($date);
         return $resultDate->format('Y-m-d');
+    }
+
+    public static function getCyrillicMonth($number)
+    {
+        $number = (strpos($number, '0') === 0) ? substr($number, 1, 1) : $number;
+        return self::MONTH[$number];
+    }
+
+    public static function getCyrillicDay($day)
+    {
+        return self::WEEKSDAY[$day];
     }
 }

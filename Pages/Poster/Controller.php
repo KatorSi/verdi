@@ -38,6 +38,7 @@ class Controller extends \Pages\Abstractions\Page
         $content = [
             'body' => [
                 'composers' => \Pages\Composer\Model::selectAll(),
+                'events' => \Pages\Poster\Model::selectAll(),
                 'back' => ''
             ],
         ];

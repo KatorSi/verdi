@@ -34,6 +34,9 @@ ul > li{
 .no_active {
     color: gray !important;
 }
+.poster-title {
+    padding-top: 10px;
+}
 .title {
     color: #650012;
     font-weight: bold;
@@ -169,6 +172,9 @@ ul > li{
 .table-default thead td, .table-default thead th {
     background-color: #f2faff;
     text-align: center;
+}
+.border-top-bold {
+    border-top: solid 2px #000000;
 }
 
 .main-table thead td:not([data-sort]):not([data-sorter="none"]){
