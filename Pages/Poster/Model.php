@@ -28,8 +28,18 @@ class Model
     {
         $result = [];
         foreach ($data as $key => $event) {
-            $month = DateTransformer::getCyrillicMonth((new \DateTime($event['date']))->format('m'));
-            $result[$month][] = $event;
+            $date = new \DateTime($event['date']);
+            $dateFormat = $date->format('Y-m-d');
+            $month = DateTransformer::getCyrillicMonth($date->format('m'));
+            // склеивание мероприятий, проходящих в один день
+            if (isset($result[$month][$dateFormat])) {
+                $result[$month][$dateFormat]['author'] = array($result[$month][$dateFormat]['author'], $event['author']);
+                $result[$month][$dateFormat]['theater'] = array($result[$month][$dateFormat]['theater'], $event['theater']);
+                $result[$month][$dateFormat]['title'] = array($result[$month][$dateFormat]['title'], $event['title']);
+            }
+            else {
+                $result[$month][$dateFormat] = $event;
+            }
         }
         return $result;
     }

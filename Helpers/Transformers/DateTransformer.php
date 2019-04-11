@@ -12,7 +12,7 @@ namespace Helpers\Transformers;
 class DateTransformer
 {
 
-    const MONTH = [
+    public static $MONTH = [
         '',
         'январь',
         'февраль',
@@ -27,7 +27,7 @@ class DateTransformer
         'ноябрь',
         'декабрь'
     ];
-    const WEEKSDAY = [
+    public static $WEEKSDAY = [
         'Mon' => 'пн',
         'Tue' => 'вт',
         'Wed' => 'ср',
@@ -56,11 +56,11 @@ class DateTransformer
     public static function getCyrillicMonth($number)
     {
         $number = (strpos($number, '0') === 0) ? substr($number, 1, 1) : $number;
-        return self::MONTH[$number];
+        return self::$MONTH[$number];
     }
 
     public static function getCyrillicDay($day)
     {
-        return self::WEEKSDAY[$day];
+        return self::$WEEKSDAY[$day];
     }
 }

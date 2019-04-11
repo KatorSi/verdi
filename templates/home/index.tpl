@@ -1,15 +1,28 @@
 <?php /** @var array $data */?>
 <div class="content-header">
     <div class="content-header-top-menu">
-        <ul>
-            <li class="active"><a href="<?= \Config::$host . 'home/index' ?>">Композиторы</a></li>
+        <div class="row">
+            <div class="col-lg-1 col-lg-offset-3 menu-item">
+                <a href="<?= \Config::$host . 'poster' ?>">Афиша</a>
+            </div>
+            <div class="col-lg-4 menu-title">
+                <span class="title title-big">Музыкальный портал</span>
+            </div>
+            <div class="col-lg-2 menu-item">
+                <a class="active" href="<?= \Config::$host?>">Композиторы</a>
+            </div>
+            <div class="col-lg-2 menu-item">
+                <a class="no_active" href="https://v1battle.ru/" target="_blank">Баттлы V1</a>
+            </div>
+        </div>
+        <!--<ul class="text-center">
             <li><a href="<?= \Config::$host . 'poster' ?>">Афиша</a></li>
             <li>
                 <span class="title title-big">Музыкальный портал</span>
             </li>
-            <li>Полотно времени</li>
-            <li>Справочники</li>
-        </ul>
+            <li class="active"><a href="<?= \Config::$host . 'home/index' ?>">Композиторы</a></li>
+            <li><a class="no_active" href="https://v1battle.ru/" target="_blank">Баттлы V1</a></li>
+        </ul>-->
     </div>
 </div>
 <div class="content-body">

@@ -34,9 +34,6 @@ ul > li{
 .no_active {
     color: gray !important;
 }
-.poster-title {
-    padding-top: 10px;
-}
 .title {
     color: #650012;
     font-weight: bold;
@@ -53,12 +50,15 @@ ul > li{
 .title-big {
     font-size: 18pt;
 }
+.content-header-top-menu .menu-item {
+    margin-top: 8px;
+    font-size: 16px;
+}
+.content-header-top-menu .menu-item a {
+    padding: 3px;
+}
 .sub-top-menu {
     padding-bottom: 10px;
-}
-.poster_select {
-    min-height: 25px;
-    border-radius: 5px;
 }
 
 .opera-title{
@@ -109,7 +109,7 @@ ul > li{
 }
 .table-fixer {
     overflow-y: scroll;
-    height: calc(100% - 50px);
+    height: calc(100% - 70px);
 }
 .content-header {
     text-align: center;
@@ -127,10 +127,12 @@ ul > li{
     margin: 0 15px;
 }
 .content-header-top-menu {
-    margin-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 30px;
 }
 .content-body {
     height: calc(100% - 55px);
+
 }
 .content-body.opera {
     padding: 0 30px;
@@ -250,5 +252,53 @@ li.active a {
     text-decoration: none;
 }
 
+/** START new styles **/
 
+div .active {
+    color: #000000;
+    text-decoration: none;
+}
 
+/** END new styles **/
+
+/** START posters **/
+
+.content-header-top-menu.poster-title {
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+.vert-align-middle {
+    vertical-align: middle !important;
+}
+.poster_select {
+    min-height: 25px;
+    border-radius: 5px;
+    min-width: 200px;
+}
+.content-body.poster .table-fixer {
+    height: calc(100% - 11px);
+}
+.content-body.poster {
+    height: calc(100% - 84px);
+}
+tr td .td-poster-margin:first-child {
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+/** END posters **/
+
+/** START composers **/
+
+.content-header-top-menu.composer-menu .btn-back {
+    position: inherit;
+    top: 0;
+}
+.btn-back-wrapper {
+    margin-bottom: 10px;
+}
+.menu-title {
+    text-align: right;
+}
+
+/** END composer **/

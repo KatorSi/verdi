@@ -70,6 +70,36 @@
                         <input type="text" name="sector" placeholder="Основные направления" value="<?= $data['sector'] ?>" class="form-control" autocomplete="off">
                     </div>
                 </div>
+                <div class="form-group form-row">
+                    <div class="col">
+                        <label>Опера</label>
+                        <input type="number" name="opera" value="<?= $data['opera'] ?>" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label>Симфония</label>
+                        <input type="number" name="symphony" value="<?= $data['symphony'] ?>" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label>Концерт</label>
+                        <input type="number" name="concert" value="<?= $data['concert'] ?>" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label>Соната</label>
+                        <input type="number" name="sonata" value="<?= $data['sonata'] ?>" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="text-center">Духовые</label>
+                        <input type="checkbox" name="brass" <?= ($data['brass'] == true) ? checked : ''; ?> value="" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="text-center">Инструментал</label>
+                        <input type="checkbox" name="instrumental" <?= ($data['instrument'] == true) ? checked : '' ?> value="" class="form-control" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label>Вокал</label>
+                        <input type="checkbox" name="vocal" <?= ($data['vocal'] == true) ? checked : '' ?> value="" class="form-control" autocomplete="off">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>Биография</label>
                     <textarea class="form-control" name="bio" placeholder="Биография" rows="5"><?= $data['bio']; ?></textarea>

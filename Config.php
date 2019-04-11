@@ -75,5 +75,5 @@ class Config
     /**
      * @var string Путь до лога ошибок php
      */
-    public static $errorLog = __DIR__.'\error.log';
+    public static $errorLog = 'error.log';
 }

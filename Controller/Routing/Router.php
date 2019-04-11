@@ -54,7 +54,6 @@ class Router
         foreach ($routeArray as $part) {
             if (!is_numeric($part)) {
                 $controller = ucfirst(strtolower($part));
-                //error_log('Controller: '.$controller.PHP_EOL, 3, Config::$errorLog);
                 break;
             }
         }
@@ -106,12 +105,8 @@ class Router
                     unset($routeData['data']['route']);
                 }
             }
-            foreach ($routeData as $key => $value) {
-                error_log('routeData: '.$key.' => '.$value.PHP_EOL, 3, Config::$errorLog);
-            }
             return !empty($routeData) ? $routeData : false;
         }
-        error_log('return false(',3, Config::$errorLog);
         return false;
     }
 }

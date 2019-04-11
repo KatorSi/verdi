@@ -1,7 +1,30 @@
 <?php $baseLink = \Config::$host . 'composer/' . $data['composer']['id'] . '/';
 
 ?>
+
 <div class="content-header">
+    <div class="content-header-top-menu composer-menu">
+        <div class="row ">
+            <div class="col-lg-1 btn-back-wrapper">
+                <div class="btn-back" data-backfunc="customBackFunc"><a href="<?php echo \Config::$host . (isset($data['back']) ? $data['back'] : '') ?>"> &lt;&lt;&nbsp;назад</a></div>
+            </div>
+            <div class="col-lg-1 col-lg-offset-1 menu-item">
+                <a href="<?= \Config::$host . 'poster' ?>">Произведения</a>4
+            </div>
+            <div class="col-lg-5 menu-title">
+                <span class="title title-big"><?php echo $data['composer']['title'] ?></span>
+            </div>
+            <div class="col-lg-2 menu-item">
+                <a class="active" href="<?= \Config::$host?>">О композиторе</a>
+            </div>
+            <div class="col-lg-2 menu-item">
+                <a class="no_active" href="https://v1battle.ru/" target="_blank">Баттлы V1</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="content-header">
     <div class="content-header-top-menu">
         <span class="title title-big"><?php echo $data['composer']['title'] ?></span>
         <div class="btn-back" data-backfunc="customBackFunc"><a href="<?php echo \Config::$host . (isset($data['back']) ? $data['back'] : '') ?>"> &lt;&lt;&nbsp;назад</a></div>
@@ -47,4 +70,4 @@
         </ul>
         <h2 style="text-align: center; margin: 0; font-size: 18px; padding: 10px 0; color: #650012; font-weight: bold;"><?php echo $data['pageTitle']; ?></h2>
     <?php endif; ?>
-</div>
+</div>-->

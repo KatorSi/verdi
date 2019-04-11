@@ -18,9 +18,8 @@ class Model
 
         if (!empty($data['genre']) && empty($data['genre_id'])) $data['genre_id'] = self::createGenre($data['genre']);
         if (!empty($data['country']) && empty($data['country_id'])) $data['country_id'] = self::createCountry($data['country']);
-
         Main::$pdo->query("INSERT INTO composers (firstName, lastName, country_id, genre_id, deathDate,
-        birthDate, bio,facts, sector, city) VALUES (:firstName,:lastName,:country_id, :genre_id, :deathDate, :birthDate, :bio,:facts, :sector_of, :city)");
+            birthDate, bio,facts, sector) VALUES (:firstName,:lastName,:country_id, :genre_id, :deathDate, :birthDate, :bio,:facts, :sector_of, :city)");
 
         Main::$pdo->bind(':firstName', !empty($data['firstName']) ? $data['firstName'] : null);
         Main::$pdo->bind(':lastName', !empty($data['lastName']) ? $data['lastName'] : null);
@@ -44,9 +43,9 @@ class Model
 
         if (!empty($data['genre']) && empty($data['genre_id'])) $data['genre_id'] = self::createGenre($data['genre']);
         if (!empty($data['country']) && empty($data['country_id'])) $data['country_id'] = self::createCountry($data['country']);
-
         Main::$pdo->query("UPDATE composers SET firstName = :firstName, lastName = :lastName, country_id = :country_id, genre_id = :genre_id, 
-        birthDate = :birth, deathDate = :death, bio = :bio, facts = :facts, sector = :sector_of, city = :city WHERE id = :id");
+        birthDate = :birth, deathDate = :death, bio = :bio, facts = :facts, sector = :sector_of, city = :city, opera = :opera, symphony = :symphony,
+        concert = :concert, sonata = :sonata, brass = :brass, instrumental = :instrumental, vocal = :vocal WHERE id = :id");
 
 
         Main::$pdo->bind(':id', $data['id']);
@@ -60,6 +59,13 @@ class Model
         Main::$pdo->bind(':facts', isset($data['facts']) ? $data['facts'] : '');
         Main::$pdo->bind(':sector_of', isset($data['sector']) ? $data['sector'] : '');
         Main::$pdo->bind(':city', isset($data['city']) ? $data['city'] : '');
+        Main::$pdo->bind(':opera', isset($data['opera']) ? $data['opera'] : '');
+        Main::$pdo->bind(':symphony', isset($data['symphony']) ? $data['symphony'] : '');
+        Main::$pdo->bind(':concert', isset($data['concert']) ? $data['concert'] : '');
+        Main::$pdo->bind(':sonata', isset($data['sonata']) ? $data['sonata'] : '');
+        Main::$pdo->bind(':brass', isset($data['brass']) ? 1 : 0);
+        Main::$pdo->bind(':instrumental', isset($data['instrumental']) ? 1 : 0);
+        Main::$pdo->bind(':vocal', isset($data['vocal']) ? 1 : 0);
 
         Main::$pdo->execute();
 

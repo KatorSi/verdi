@@ -44,13 +44,11 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/auth")) {
     }
 }
 
-
 /** @var string $index_file */
 require_once $index_file;
 $user = Auth_client_api::$user;
 
 
 Config::$host = '//' . $_SERVER['HTTP_HOST'] . '/';
-
 $R = new Controller\Routing\Router;
 $R->dispatchURI();
