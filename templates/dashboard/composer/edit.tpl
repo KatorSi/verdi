@@ -84,8 +84,8 @@
                         <input type="number" name="concert" value="<?= $data['concert'] ?>" class="form-control" autocomplete="off">
                     </div>
                     <div class="col">
-                        <label>Соната</label>
-                        <input type="number" name="sonata" value="<?= $data['sonata'] ?>" class="form-control" autocomplete="off">
+                        <label class="text-center">Соната</label>
+                        <input type="checkbox" name="sonata" <?= ($data['sonata'] == true) ? checked : ''; ?> value="" class="form-control" autocomplete="off">
                     </div>
                     <div class="col">
                         <label class="text-center">Духовые</label>

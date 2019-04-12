@@ -6,6 +6,7 @@
 <!--                <li><a href="#">Фильмы</a></li>-->
 <!--                <li><a href="#">Справочники</a></li>-->
                 <li><a class="no_active">Настройки</a></li>
+                <li><a href="/poster">Афиша</a></li>
                 <li><a class="no_active">Справочники</a></li>
                 <li><a class="no_active">Избранное</a></li>
                 <li>

@@ -58,7 +58,8 @@ ul > li{
     padding: 3px;
 }
 .sub-top-menu {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .opera-title{
@@ -109,7 +110,7 @@ ul > li{
 }
 .table-fixer {
     overflow-y: scroll;
-    height: calc(100% - 70px);
+    height: calc(100% - 81px);
 }
 .content-header {
     text-align: center;
@@ -254,6 +255,10 @@ li.active a {
 
 /** START new styles **/
 
+.composers_work td {
+    padding: 0;
+    font-size: 10px;
+}
 div .active {
     color: #000000;
     text-decoration: none;
@@ -285,6 +290,10 @@ tr td .td-poster-margin:first-child {
     display: inline-block;
     margin-bottom: 4px;
 }
+.poster-title + .sub-top-menu {
+    padding-top: 10px;
+    padding-bottom: 0;
+}
 
 /** END posters **/
 
@@ -298,7 +307,21 @@ tr td .td-poster-margin:first-child {
     margin-bottom: 10px;
 }
 .menu-title {
-    text-align: right;
+/*    text-align: right;*/
 }
+.title-wrapper {
+    position: absolute;
+    left: 50%;
+}
+.title-wrapper .menu-title {
+    position: relative;
+    left: -50%;
+}
+.composer-menu + .sub-top-menu {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/** END NEW STYLES **/
 
 /** END composer **/

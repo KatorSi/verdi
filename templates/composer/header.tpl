@@ -1,26 +1,55 @@
-<?php $baseLink = \Config::$host . 'composer/' . $data['composer']['id'] . '/';
-
+<?php
+    $baseLink = \Config::$host . 'composer/' . $data['composer']['id'] . '/';
 ?>
 
 <div class="content-header">
     <div class="content-header-top-menu composer-menu">
-        <div class="row ">
-            <div class="col-lg-1 btn-back-wrapper">
-                <div class="btn-back" data-backfunc="customBackFunc"><a href="<?php echo \Config::$host . (isset($data['back']) ? $data['back'] : '') ?>"> &lt;&lt;&nbsp;назад</a></div>
-            </div>
-            <div class="col-lg-1 col-lg-offset-1 menu-item">
-                <a href="<?= \Config::$host . 'poster' ?>">Произведения</a>4
-            </div>
-            <div class="col-lg-5 menu-title">
+        <div class="title-wrapper">
+            <div class="menu-title">
                 <span class="title title-big"><?php echo $data['composer']['title'] ?></span>
             </div>
-            <div class="col-lg-2 menu-item">
-                <a class="active" href="<?= \Config::$host?>">О композиторе</a>
-            </div>
-            <div class="col-lg-2 menu-item">
-                <a class="no_active" href="https://v1battle.ru/" target="_blank">Баттлы V1</a>
-            </div>
         </div>
+        <div class="col-lg-1 btn-back-wrapper">
+            <div class="btn-back" data-backfunc="customBackFunc"><a href="<?php echo \Config::$host . (isset($data['back']) ? $data['back'] : '') ?>"> &lt;&lt;&nbsp;назад</a></div>
+        </div>
+        <div style="z-index: 999999999;" class="col-lg-1 col-lg-offset-1 menu-item">
+            <a <?= ($data['active'] !== 'about') ? 'class="active"' : '' ?> href="<?= $baseLink ?>">Произведения</a>
+        </div>
+        <div class="col-lg-7 menu-item text-right">
+            <a <?= ($data['active'] == 'about') ? 'class="active"' : '' ?> href="<?= $baseLink.'about'?>">О композиторе</a>
+        </div>
+        <div class="col-lg-2 menu-item">
+            <a class="no_active" href="https://v1battle.ru/" target="_blank">Баттлы V1</a>
+        </div>
+    </div>
+    <div class="sub-top-menu">
+        <ul>
+        <?php if (!empty($data['composer']['opera'])): ?>
+            <li <?= ($data['active'] == 'operas') ? 'class="active"' : '' ?>>
+                <a href="<?= $baseLink.'operas'; ?>">Оперы(<?= $data['composer']['opera']?>)</a>
+            </li>
+        <?php endif; ?>
+        <?php if (!empty($data['composer']['symphony'])): ?>
+            <li <?= ($data['active'] == 'symphonies') ? 'class="active"' : '' ?>>
+                <a href="<?= $baseLink.'symphonies'; ?>">Симфонии(<?= $data['composer']['symphony'] ?>)</a>
+            </li>
+        <?php endif; ?>
+        <?php if (!empty($data['composer']['concert'])): ?>
+            <li <?= ($data['active'] == 'concerts') ? 'class="active"' : '' ?>>
+                <a href="<?= $baseLink.'concerts'; ?>">Концерты(<?= $data['composer']['concert'] ?>)</a>
+            </li>
+        <?php endif; ?>
+        <?php if (!empty($data['composer']['sonata'])): ?>
+            <li <?= ($data['active'] == 'sonatas') ? 'class="active"' : '' ?>>
+                <a href="<?= $baseLink.'sonatas'; ?>">Сонаты(<?= $data['composer']['sonata'] ?>)</a>
+            </li>
+        <?php endif; ?>
+        <?php if (!empty($data['composer']['brass']) || !empty($data['composer']['instrumental']) || !empty($data['composer']['vocal'])): ?>
+            <li <?= ($data['active'] == 'others') ? 'class="active"' : '' ?>>
+                <a href="<?= $baseLink.'others'; ?>">Другие произведения(<?= $data['composer']['brass'] + $data['composer']['instrumental'] + $data['composer']['vocal']; ?>)</a>
+            </li>
+        <?php endif; ?>
+        </ul>
     </div>
 </div>
 

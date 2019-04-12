@@ -18,6 +18,7 @@ class Controller extends \Pages\Abstractions\Page
         'movies'       => 'composer/movies',
         'facts'        => 'composer/facts',
         'header'       => 'composer/header',
+        'about'        => 'composer/biography',
 
         'singleOpera'      => 'operas/single',
         'descriptionOpera' => 'operas/description',
@@ -155,5 +156,21 @@ class Controller extends \Pages\Abstractions\Page
         } else {
             return parent::notFound(true);
         }
+    }
+
+    public function about($data) {
+        $composerId = intval($data['composerId']);
+
+        if ($composerId > 0) {
+            $composer = Model::selectSingle($composerId);
+            $data = [
+                'composer' => $composer,
+                'active' => 'about',
+                ''
+            ];
+        }
+
+        $data['header'] = parent::template(self::$templates['header'], $data);
+        return parent::fullTemplate(self::$templates['about'], ['body' => $data]);
     }
 }
