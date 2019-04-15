@@ -138,7 +138,7 @@ ul > li{
 .content-body.opera {
     padding: 0 30px;
     overflow-y: auto;
-    max-height: calc(100% - 160px);
+    max-height: calc(100% - 110px);
     position: relative;
 }
 .page-wrap-footer > ul {
@@ -264,6 +264,24 @@ div .active {
     text-decoration: none;
 }
 
+#lk_page {
+    opacity: 1;
+    overflow: visible;
+    top: 30%;
+}
+#lk_page .modal-body {
+    padding: 5px;
+}
+
+.fancybox-skin {
+    height: 693px !important;
+}
+.fancybox-inner {
+    height: 669px !important;
+}
+a[data-target="#lk_page"] {
+    cursor: pointer;
+}
 /** END new styles **/
 
 /** START posters **/

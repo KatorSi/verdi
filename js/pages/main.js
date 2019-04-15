@@ -108,6 +108,19 @@ $(document).ready(function () {
             $(this).text('(Свернуть)');
         }
     });
+
+
+    // close lk page
+    /*$(document).on('click', '#ok', function() {
+        $('#lk_page .close').trigger('click');
+    });
+    $(document).on('click', '.fancybox-item.fancybox-close', function() {
+        $('#lk_page .close').trigger('click');
+    });*/
+    $(document).on('click', '#auth_login', function() {
+        $('#lk_page .close').trigger('click');
+    });
+
 });
 
 // composers

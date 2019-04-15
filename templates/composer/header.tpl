@@ -12,15 +12,15 @@
         <div class="col-lg-1 btn-back-wrapper">
             <div class="btn-back" data-backfunc="customBackFunc"><a href="<?php echo \Config::$host . (isset($data['back']) ? $data['back'] : '') ?>"> &lt;&lt;&nbsp;назад</a></div>
         </div>
-        <div style="z-index: 999999999;" class="col-lg-1 col-lg-offset-1 menu-item">
+        <div class="col-lg-1 col-lg-offset-1 menu-item">
             <a <?= ($data['active'] !== 'about') ? 'class="active"' : '' ?> href="<?= $baseLink ?>">Произведения</a>
         </div>
-        <div class="col-lg-7 menu-item text-right">
+        <div class="col-lg-6 col-lg-offset-1 menu-item text-right">
             <a <?= ($data['active'] == 'about') ? 'class="active"' : '' ?> href="<?= $baseLink.'about'?>">О композиторе</a>
         </div>
-        <div class="col-lg-2 menu-item">
+        <!--<div class="col-lg-2 menu-item">
             <a class="no_active" href="https://v1battle.ru/" target="_blank">Баттлы V1</a>
-        </div>
+        </div>-->
     </div>
     <div class="sub-top-menu">
         <ul>

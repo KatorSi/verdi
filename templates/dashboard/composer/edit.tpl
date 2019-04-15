@@ -171,23 +171,39 @@
                     <i class="fa fa-plus"></i></button>
             </h6>
             <div class="composer-books collapse" aria-labelledby="head-composer-books" data-parent=".block-composer-books">
-                <input type="file" name="books" class="form-control" multiple="">
-                <table class="table table-bordered table-default list-composer-books">
-                    <thead>
-                    <tr class="d-flex">
-                        <th class="col-1">№</th>
-                        <th class="col-1">Название</th>
-                        <th class="col-1">Год</th>
-                        <th class="col-1">Автор</th>
-                        <th class="col-8">Короткое описание</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+                <form class="composer-books collapse" aria-labelledby="head-composer-books" data-parent=".block-composer-books">
+                    <input type="file" name="books" class="form-control" multiple="">
+                    <table class="table table-bordered table-default list-composer-books">
+                        <thead>
+                        <tr>
+                            <th class="col-2">Название</th>
+                            <th class="col-1">Год</th>
+                            <th class="col-2">Автор</th>
+                            <th class="col-7">Короткое описание</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($data['books'])): foreach ($data['books'] as $book): ?>
+                            <tr id="<?php echo $book['id']; ?>" data-href="<?= $book['filePath']; ?>">
+                                <td class="col-2">
+                                    <input class="form-control" autocomplete="off" type="text" name="books[<?= $book['id']; ?>][title]" value="<?php echo $book['title']; ?>">
+                                </td>
+                                <td class="col-1">
+                                    <input class="form-control date-year" autocomplete="off" type="text" name="books[<?= $book['id']; ?>][year]" value="">
+                                </td>
+                                <td class="col-2">
+                                    <input class="form-control" autocomplete="off" type="text" name="books[<?= $book['id']; ?>][author]" value="">
+                                </td>
+                                <td class="col-7 pr-5">
+                                    <textarea class="form-control non-cke" name="books[<?= $book['id']; ?>][description]"></textarea><span class="remove badge badge-danger badge-pill badge-button"><i class="fa fa-remove" aria-hidden="true"></i></span>
+                                </td>
+                            </tr>
+                            <?php endforeach; endif; ?>
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-outline-success pull-right">Сохранить</button>
+                </form>
             </div>
-
         </div>
     </div>
 </div>

@@ -133,6 +133,19 @@ class Controller extends \Pages\Abstractions\Dashboard
         return parent::notFound(true);
     }
 
+    public function saveBooks($data)
+    {
+        if (Response::$isPost && isset($data['books']) && !empty($data['books'])) {
+            $response = [];
+            var_dump($data);
+            foreach ($data['books'] as $idBook => $book) {
+                $response[] = Model::updateBook($idBook, $book);
+            }
+            return $response;
+        }
+        return parent::notFound(true);
+    }
+
     /**
      * @param $data
      *

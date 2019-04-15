@@ -181,4 +181,19 @@ WHERE files.type = 'books' AND files.owner = 'composer' AND files.owner_id = :id
 
         return false;
     }
+
+    public static function updateBook($idBook, $book)
+    {
+        $update = Main::$pdo->update(['title' => $book['title']], ['id', $idBook], 'files');
+        if ($update['status'] === true) {
+            $update = Main::$pdo->update([
+                'year' => $book['year'],
+                'author' => $book['author'],
+                'title' => $book['title'],
+                'description' => $book['description']
+            ], ['id' => $idBook], 'booksdata');
+            return $update;
+        }
+        return false;
+    }
 }

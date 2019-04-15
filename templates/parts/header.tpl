@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?= \Config::$host . 'css/styles.css?v=' .\Config::$version; ?>">
     <link rel="stylesheet" href="//cdn.006.spb.ru/private/player/video/player.css?1548158579" type="text/css" media="all">
     <link rel="stylesheet" href="/js/fancybox/source/jquery.fancybox.min.css?v=2.1.7" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/css/profile.css" type="text/css" media="screen" />
 </head>
 
 <body>

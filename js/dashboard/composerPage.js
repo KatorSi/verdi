@@ -68,7 +68,7 @@ $(function(){
 
     var options = {
         singleFileUploads: true,
-        autoUpload: true,
+        autoUpload: false,//true, //временно
         async: true,
         type: 'PUT',
         multipart: false,
@@ -142,6 +142,21 @@ $(function(){
         var data = $(this).serializeObject();
         $.ajax({
             url:'/dashboard/composer/' + composerId + '/saveFilms',
+            type: 'POST',
+            data: data,
+            success: function(response){
+                console.log(response);
+            }
+        });
+        console.log(this, $(this),data);
+    });
+
+    blockBooks.submit(function(e){
+        e.preventDefault();
+        CKupdate();
+        var data = $(this).serializeObject();
+        $.ajax({
+            url:'/dashboard/composer/' + composerId + '/saveBooks',
             type: 'POST',
             data: data,
             success: function(response){

@@ -1,0 +1,72 @@
+#user_List h5{
+    text-align: center;
+    font-weight: bold;
+}
+
+#ava_img {
+    max-width: 240px;
+    max-height: 172px;
+}
+
+table.table.table-profile td {
+    border: 0;
+    padding: 5px;
+    vertical-align: top;
+}
+
+table.table.table-profile td {
+    white-space: nowrap;
+}
+.table-profile-controls {
+    padding: 5px;
+    border-top: 1px dashed rgb(204, 204, 204);
+    display: block;
+}
+.table-profile-extra-controls {
+    margin: 20px 0 10px 0;
+    padding: 0 5px;
+}
+.table-profile-extra-controls > li {
+    border: 1px solid grey;
+    background-color: #ece9e9;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+}
+.table-profile-extra-controls > li > a {
+    display: block;
+    padding: 5px;
+    color: #323232;
+    text-decoration: none;
+}
+.profile-wrap table {
+    border: none;
+}
+#user_List tbody td {
+    text-align: left;
+}
+#user_List td {
+    padding: 10px;
+}
+#user_List tbody td:last-child {
+    text-align: center;
+}
+#user_List {
+    padding: 5px;
+}
+#user_List table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#user_List td {
+    border: 1px solid #ccc;
+    font-size: 12px;
+}
+#user_List thead td {
+    background-color: #f2faff;
+}
+#user_List td img {
+    width: 48px;
+    vertical-align: middle;
+}
