@@ -142,22 +142,23 @@
                                 <input class="form-control" autocomplete="off" type="text" name="films[<?php echo $film['id']; ?>][title]" value="<?php echo $film['title']; ?>">
                             </td>
                             <td class="col-1">
-                                <input class="form-control date-year" autocomplete="off" type="text" name="films[<?php echo $film['id']; ?>][year]" value="">
+                                <input class="form-control date-year" autocomplete="off" type="text" name="films[<?php echo $film['id']; ?>][year]" value="<?php echo $film['year']; ?>">
                             </td>
                             <td class="col-2">
-                                <input class="form-control" autocomplete="off" type="text" name="films[<?php echo $film['id']; ?>][creator]" value="">
+                                <input class="form-control" autocomplete="off" type="text" name="films[<?php echo $film['id']; ?>][creator]" value="<?php echo $film['creator']; ?>">
                             </td>
                             <td class="col-2">
-                                <input class="form-control" autocomplete="off" type="text" name="films[<?php echo $film['id']; ?>][actors]" value="">
+                                <input class="form-control" autocomplete="off" type="text" name="films[<?php echo $film['id']; ?>][actors]" value="<?php echo $film['actors']; ?>">
                             </td>
                             <td class="col-5 pr-5">
-                                <textarea class="form-control non-cke" name="films[<?php echo $film['id']; ?>][description]"></textarea><span class="remove badge badge-danger badge-pill badge-button"><i class="fa fa-remove" aria-hidden="true"></i></span>
+                                <textarea class="form-control non-cke" name="films[<?php echo $film['id']; ?>][description]"><?php echo $film['description']; ?></textarea><span class="remove badge badge-danger badge-pill badge-button"><i class="fa fa-remove" aria-hidden="true"></i></span>
                             </td>
                         </tr>
                     <?php endforeach; endif; ?>
                     </tbody>
                 </table>
-                <button type="submit" class="btn btn-outline-success pull-right">Сохранить</button>
+                <button type="submit" class="btn btn-outline-success pull-right films-submit">Сохранить</button>
+                <button type="reset" class="btn btn-outline-warning pull-right mr-3">Очистить</button>
             </form>
         </div>
 
@@ -201,7 +202,8 @@
                             <?php endforeach; endif; ?>
                         </tbody>
                     </table>
-                    <button type="submit" class="btn btn-outline-success pull-right">Сохранить</button>
+                    <button type="submit" class="btn btn-outline-success pull-right books-submit">Сохранить</button>
+                    <button type="reset" class="btn btn-outline-warning pull-right mr-3">Очистить</button>
                 </form>
             </div>
         </div>

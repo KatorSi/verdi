@@ -2,6 +2,10 @@
     <div>
         <div class="form-group d-flex justify-content-between">
             <h4>Оперы</h4>
+            <div>
+                <button type="checkbox" class="btn btn-outline-info composer_check" data-composer="39">Моцарт</button>
+                <button type="checkbox" class="btn btn-outline-info composer_check" data-composer="132">Верди</button>
+            </div>
             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#newOperaModal">Добавить</button>
         </div>
         <div class="dropdown-divider"></div>
@@ -9,7 +13,7 @@
             <?php if(!empty($data)) : ?>
             <div class="list-group">
                 <?php foreach($data as $opera) : ?>
-                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-opera="<?=$opera['id']?>">
+                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-composer="<?=$opera['composer_id'];?>" data-opera="<?=$opera['id']?>">
                     <a href="<?= \Config::$host . 'dashboard/opera/' . $opera['id'] ?>"><?= $opera['title']?></a>
                     <span class="badge badge-danger badge-pill badge-button" onclick="deleteOpera(<?=$opera['id']?>)">
 							<i class="fa fa-remove" aria-hidden="true"></i>

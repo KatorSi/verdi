@@ -39,6 +39,12 @@ class Controller extends \Pages\Abstractions\Dashboard
         ]
     ];
 
+    public static $uploadTypes = [
+        'books',
+        'films',
+        'texts'
+    ];
+
     public static $name = 'dashboard';
 
     public function __construct() { parent::__construct(); }
@@ -122,10 +128,15 @@ class Controller extends \Pages\Abstractions\Dashboard
 
     public function saveFilms($data)
     {
-        if(Response::$isPost && isset($data['films']) && !empty($data['films'])){
+        if(Response::$isPost && isset($data['films']) && !empty($data['films'])) {
             $response = [];
-            foreach($data['films'] as $idFilm => $film){
-                $response[] = Model::updateFilms($idFilm, $film);
+            foreach($data['films'] as $idFilm => $film) {
+                if (is_integer($idFilm)) {
+                    $response[] = Model::updateFilms($idFilm, $film);
+                }
+                else {
+                    $response[] = Model::createFilms($film);
+                }
             }
 
             return $response;
@@ -137,7 +148,6 @@ class Controller extends \Pages\Abstractions\Dashboard
     {
         if (Response::$isPost && isset($data['books']) && !empty($data['books'])) {
             $response = [];
-            var_dump($data);
             foreach ($data['books'] as $idBook => $book) {
                 $response[] = Model::updateBook($idBook, $book);
             }
@@ -153,11 +163,9 @@ class Controller extends \Pages\Abstractions\Dashboard
      */
     public function upload($data)
     {
-        if (Response::$isPut && intval($data['id']) > 0 && in_array($data['type'], ['films', 'books'])) {
+        if (Response::$isPut && intval($data['id']) > 0 && in_array($data['type'], self::$uploadTypes)) {
             $fileClass = new Files();
-
             $fileData = $fileClass->upload($data['type'], 'composer', intval($data['id']));
-
             return $fileData;
         }
 

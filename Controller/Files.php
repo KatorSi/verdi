@@ -107,24 +107,24 @@ class Files
 
         $upload = new CustomUploader([
             'upload_dir' => \Config::$basePath . $filePath,
-            'param_name' => 'video'
+            'param_name' => $type
         ], false);
         $upload_results = $upload->post(false);
-        if (!empty($upload_results['video']) && !isset($upload_results['video'][0]->error) && $upload_results['video'][0]->size == $_GET['s']) {
-            $fileInfo = $this->getFileInfo($upload_results['video'][0]->originalName);
+        if (!empty($upload_results[$type]) && !isset($upload_results[$type][0]->error)/* && $upload_results[$type][0]->size == $_GET['s']*/) {
+            $fileInfo = $this->getFileInfo($upload_results[$type][0]->originalName);
 
             $fileData = [
                 'path'     => $filePath,
-                'name'     => $upload_results['video'][0]->name,
+                'name'     => $upload_results[$type][0]->name,
                 'title'    => $fileInfo[0],
                 'type'     => $type,
                 'owner'    => $owner,
                 'owner_id' => $ownerId,
-                'size'     => $upload_results['video'][0]->size,
+                'size'     => $upload_results[$type][0]->size,
             ];
 
             $fileData = $this->save($fileData);
-            $fileData['res'] = $upload_results['video'];
+            $fileData['res'] = $upload_results[$type];
             return $fileData;
         }
         return false;

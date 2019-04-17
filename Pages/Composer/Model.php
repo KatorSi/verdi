@@ -129,9 +129,12 @@ WHERE composers.id = :id");
         $composer = Main::$pdo->single();
 
         if (false !== $composer) {
-            Main::$pdo->query("SELECT files.id, concat(files.path, files.name) as file, files.title
+            /*Main::$pdo->query("SELECT files.id, concat(files.path, files.name) as file, files.title
 FROM files
-WHERE files.type = 'films' AND files.owner = 'composer' AND files.owner_id = :id");
+WHERE files.type = 'films' AND files.owner = 'composer' AND files.owner_id = :id");*/
+            Main::$pdo->query("SELECT filmsdata.*
+            FROM filmsdata
+            WHERE filmsdata.owner_id = :id");
             Main::$pdo->bind(':id', $id);
             $composer['films'] = Main::$pdo->resultset();
 
@@ -174,12 +177,23 @@ WHERE files.type = 'books' AND files.owner = 'composer' AND files.owner_id = :id
                 'creator'     => $film['creator'],
                 'actors'      => $film['actors'],
                 'description' => $film['description']
-            ], ['id', $idFilm], 'filmsData');
-
+            ], ['id', $idFilm], 'filmsdata');
             return $update;
         }
-
         return false;
+    }
+
+    public static function createFilms($film)
+    {
+        $create = Main::$pdo->insert([
+            'title'       => $film['title'],
+            'year'        => $film['year'],
+            'owner_id'    => $film['owner_id'],
+            'creator'     => $film['creator'],
+            'actors'      => $film['actors'],
+            'description' => $film['description'],
+        ], 'filmsdata');
+        return $create;
     }
 
     public static function updateBook($idBook, $book)

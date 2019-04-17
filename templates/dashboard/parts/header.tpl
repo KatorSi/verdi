@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" href="<?= \Config::$host . 'css/dashboard/style.default.css' ?>">
     <link rel="stylesheet" href="<?= \Config::$host . 'css/dashboard/custom.css' ?>">
+    <link rel="icon" href="/img/favicon.png" />
     <?php if(!empty($data['styles'])) :
         foreach($data['styles'] as $style) : ?>
             <link rel="stylesheet" href="<?= \Config::$host . $style . '?v=' . \Config::$version  ?>">

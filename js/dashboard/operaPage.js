@@ -95,6 +95,42 @@ $(function () {
             }
         })
         .on('click', '.add-opera-production', addOperaProduction);
+
+    // переключение списка композиторов
+    $(document).on('click', 'button.composer_check', function(event) {
+        var composerId = $(event.target).attr('data-composer');
+        var $againstComposer = $('button:not([data-composer="'+composerId+'"])[data-composer]');
+        console.log($(event.target));
+        console.log(composerId);
+        console.log($againstComposer);
+        if ($(event.target).hasClass('active') === true && $againstComposer.hasClass('active') === false) {
+            $(event.target).removeClass('active');
+            $('div[data-composer]').each(function (index, item) {
+                $(item).removeClass('d-none');
+                $(item).addClass('d-flex');
+            });
+        }
+        else if ($(event.target).hasClass('active') === false && $againstComposer.hasClass('active') === true) {
+            $againstComposer.removeClass('active');
+            $(event.target).addClass('active');
+            $('div[data-composer="'+$againstComposer.attr('data-composer')+'"]').each(function (index, item) {
+                $(item).addClass('d-none');
+                $(item).removeClass('d-flex');
+            });
+            $('div[data-composer="'+composerId+'"]').each(function (index, item) {
+                $(item).removeClass('d-none');
+                $(item).addClass('d-flex');
+            });
+        }
+        else {
+            $(event.target).addClass('active');
+            $('div[data-composer="'+$againstComposer.attr('data-composer')+'"]').each(function (index, item) {
+                $(item).addClass('d-none');
+                $(item).removeClass('d-flex');
+            });
+        }
+
+    });
 });
 
 function addOperaProduction() {

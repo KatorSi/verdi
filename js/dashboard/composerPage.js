@@ -55,6 +55,37 @@ function updateComposer() {
     });
 }
 
+function setBookRow(file, filename, index, composerId)
+{
+    $('<input type="hidden" class="form-control" name="books['+index+'][owner_id]" value="'+composerId+'" />').appendTo(file);
+    $('<td class="col-2"></td>').append('<input type="text" class="form-control" name="books['+index+'][title]" value="'+filename+'" />').appendTo(file);
+    $('<td class="col-1"></td>').append('<input class="form-control date-year" autocomplete="off" type="number" max="9999" name="books['+index+'][year]" value="">').appendTo(file);
+    $('<td class="col-2"></td>').append('<input class="form-control date-year" autocomplete="off" type="text" name="books['+index+'][creator]" value="">').appendTo(file);
+    $('<td class="col-5 pr-5"></td>').append('<textarea class="form-control non-cke" name="books['+index+'][description]"></textarea>').appendTo(file);
+    return file;
+}
+
+function setFilmRow(file, filename, index, composerId)
+{
+    $('<input type="hidden" class="form-control" name="films['+index+'][owner_id]" value="'+composerId+'" />').appendTo(file);
+    $('<td class="col-2"></td>').append('<input type="text" class="form-control" name="films['+index+'][title]" value="'+filename+'" />').appendTo(file);
+    $('<td class="col-1"></td>').append('<input class="form-control date-year" autocomplete="off" type="number" max="9999" name="films['+index+'][year]" value="">').appendTo(file);
+    $('<td class="col-2"></td>').append('<input class="form-control date-year" autocomplete="off" type="text" name="films['+index+'][creator]" value="">').appendTo(file);
+    $('<td class="col-2"></td>').append('<input class="form-control date-year" autocomplete="off" type="text" name="films['+index+'][actors]" value="">').appendTo(file);
+    $('<td class="col-5 pr-5"></td>').append('<textarea class="form-control non-cke" name="films['+index+'][description]"></textarea>').appendTo(file);
+    return file;
+}
+
+function setErrorRow(file)
+{
+    $('<td class="col-2"></td>').html('<span class="has-error">Ошибка. Неизвестный тип файла</span>').appendTo(file);
+    return file;
+}
+
+var removeFromList = function (event) {
+    $(event.target).siblings('table').find('tbody tr').remove();
+    $(event.target).closest('form').get(0).reset();
+};
 
 
 $(function(){
@@ -76,25 +107,29 @@ $(function(){
             var type = this.name;
             var listFiles = $('.composer-' + type).find('.list-composer-' + type).find('tbody');
             data.url = '/dashboard/composer/' + composerId + '/upload/' + type;
-
             data.originalFiles.forEach(function (file) {
-
                 var id = file.lastModified + file.size;
                 if (listFiles.find('tr#' + id).length === 0) {
                     var newFile = $('<tr></tr>').attr('id', id);
-
                     var name = file.name.split('.');
                     name.pop();
-                    if(type === 'films'){
-                        $('<td class="col-2"></td>').html('<input type="text" class="form-control" name="title" value="' +  name + '" />').appendTo(newFile);
-                        $('<td class="col-10 progress-block" colspan="4"><div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div></div></td>').appendTo(newFile);
+                    switch (type) {
+                        case 'books':
+                            newFile = setBookRow(newFile, name, id, composerId);
+                            break;
+                        case 'films':
+                            newFile = setFilmRow(newFile, name, id, composerId);
+                            break;
+                        default:
+                            newFile = setErrorRow(newFile);
                     }
 
                     listFiles.append(newFile);
                 }
             });
-
-            data.submit();
+            $('.'+type+'-submit').off('click.fileupload').on('click.fileupload', function () {
+                data.submit();
+            });
         },
 
         progress: function (e, data) {
@@ -108,7 +143,7 @@ $(function(){
 
         done: function (e, data) {
             var result = JSON.parse(data.result);
-
+            console.log(result);
             var type = this.name;
             var listFiles = $('.composer-' + type).find('.list-composer-' + type).find('tbody');
             var id = data.data.lastModified + data.data.size;
@@ -116,11 +151,11 @@ $(function(){
 
             file.attr('id', result.response.id).attr('data-href', result.response.path + result.response.name);
             file.find('.progress-block').remove();
-            file.find('input[name="title"]').attr('name', 'films[' + result.response.id + '][title]');
+            /*file.find('input[name="title"]').attr('name', 'films[' + result.response.id + '][title]');
             $('<td class="col-1"></td>').append('<input class="form-control date-year" autocomplete="off" type="text" name="films[' + result.response.id + '][year]" value="">').appendTo(file);
             $('<td class="col-2"></td>').append('<input class="form-control date-year" autocomplete="off" type="text" name="films[' + result.response.id + '][creator]" value="">').appendTo(file);
             $('<td class="col-2"></td>').append('<input class="form-control date-year" autocomplete="off" type="text" name="films[' + result.response.id + '][actors]" value="">').appendTo(file);
-            $('<td class="col-5 pr-5"></td>').append('<textarea class="form-control non-cke" name="films[' + result.response.id + '][description]"></textarea><span class="remove badge badge-danger badge-pill badge-button"><i class="fa fa-remove" aria-hidden="true"></i></span>').appendTo(file);
+            $('<td class="col-5 pr-5"></td>').append('<textarea class="form-control non-cke" name="films[' + result.response.id + '][description]"></textarea><span class="remove badge badge-danger badge-pill badge-button"><i class="fa fa-remove" aria-hidden="true"></i></span>').appendTo(file);*/
         }
     };
 
@@ -135,6 +170,9 @@ $(function(){
         .on('click', 'button.upload', function () {
             $('input[type="file"][name="books"]').click();
         });
+    $('button[type="reset"]').on('click', function(event) {
+        removeFromList(event);
+    });
 
     blockFilms.submit(function(e){
         e.preventDefault();
@@ -144,11 +182,11 @@ $(function(){
             url:'/dashboard/composer/' + composerId + '/saveFilms',
             type: 'POST',
             data: data,
-            success: function(response){
+            success: function(response) {
                 console.log(response);
-            }
+            },
         });
-        console.log(this, $(this),data);
+        //console.log(this, $(this),data);
     });
 
     blockBooks.submit(function(e){
@@ -166,6 +204,37 @@ $(function(){
         console.log(this, $(this),data);
     });
 });
+
+$(document).on('click', 'span.remove.badge', function (event) {
+    event.preventDefault();
+    removeFile(this);
+});
+
+function removeFile(target) {
+    let file = $(target).closest('tr');
+    let id = $(file).attr('id');
+    $.ajax({
+        url: '/dashboard/file/remove/',
+        data: {id: id},
+        success: function (res) {
+            if (res) {
+                res = JSON.parse(res);
+                if (res.response) {
+                    var modal = $('#alertModal');
+                    if (true === res.response.status) {
+                        file.remove();
+
+                        modal.find('.response-message').text(res.response.message);
+                        modal.modal('show');
+                    } else {
+                        modal.find('.response-message').text(res.response.error);
+                        modal.modal('show');
+                    }
+                }
+            }
+        }
+    })
+}
 
 $.fn.serializeObject = function() {
     var o = {};

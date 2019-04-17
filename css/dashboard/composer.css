@@ -4,3 +4,10 @@
 .composer .composer-films .card, .composer .composer-books .card{border-width: 1px;}
 .composer .composer-films .remove, .composer .composer-books .remove { position: absolute; right: 10px; padding-top: 3px; padding-bottom: 2px; top: 50%; margin-top: -8px;}
 input[type="checkbox"] { width: min-content;}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
