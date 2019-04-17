@@ -27,6 +27,21 @@ class DateTransformer
         'ноябрь',
         'декабрь'
     ];
+    public static $SHORTMONTH = [
+        '',
+        'янв',
+        'фев',
+        'мар',
+        'апр',
+        'май',
+        'июн',
+        'июл',
+        'авг',
+        'сен',
+        'окт',
+        'ноя',
+        'дек'
+    ];
     public static $WEEKSDAY = [
         'Mon' => 'пн',
         'Tue' => 'вт',
@@ -59,8 +74,20 @@ class DateTransformer
         return self::$MONTH[$number];
     }
 
+    public static function getCyrillicShortMonth($number)
+    {
+        $number = (strpos($number, '0') === 0) ? substr($number, 1, 1) : $number;
+        return self::$SHORTMONTH[$number];
+    }
+
     public static function getCyrillicDay($day)
     {
         return self::$WEEKSDAY[$day];
+    }
+
+    public static function getToday()
+    {
+        $today = new \DateTime();
+        return $today->format('d').' '.self::getCyrillicShortMonth($today->format('m')).' '.$today->format('Y');
     }
 }

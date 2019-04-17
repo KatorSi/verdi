@@ -1,1 +1,0 @@
-<div><?= isset($data['test']) ? $data['test'] : 'lox' ?></div>

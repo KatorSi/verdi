@@ -299,7 +299,7 @@ a[data-target="#lk_page"] {
     min-width: 200px;
 }
 .content-body.poster .table-fixer {
-    height: calc(100% - 11px);
+    height: calc(100% - 74px);
 }
 .content-body.poster {
     height: calc(100% - 84px);
@@ -310,7 +310,10 @@ tr td .td-poster-margin:first-child {
 }
 .poster-title + .sub-top-menu {
     padding-top: 10px;
-    padding-bottom: 0;
+}
+.table-border-none, .table-border-none td{
+    border-top: none !important;
+    border-bottom: none !important;
 }
 
 /** END posters **/
