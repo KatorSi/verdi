@@ -311,9 +311,12 @@ tr td .td-poster-margin:first-child {
 .poster-title + .sub-top-menu {
     padding-top: 10px;
 }
-.table-border-none, .table-border-none td{
+.table-border-none, .table-border-none td {
     border-top: none !important;
     border-bottom: none !important;
+}
+.align-middle {
+    vertical-align: middle !important;
 }
 
 /** END posters **/
