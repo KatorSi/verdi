@@ -14,9 +14,9 @@
 				<li>
 					<a href="<?= \Config::$host . 'dashboard/opera' ?>">Оперы</a>
 				</li>
-				<!--<li>
-					<a href="/dashboard/events">Афиша</a>
-				</li> -->
+				<li>
+					<a href="<?= \Config::$host . 'dashboard/poster' ?>">Афиша</a>
+				</li>
 				<li>
 					<a href="#libs" aria-expanded="false" data-toggle="collapse">Справочники</a>
 					<ul id="libs" class="collapse list-unstyled ">

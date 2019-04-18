@@ -10,12 +10,12 @@ class Model
 
     const TABLENAME = 'events';
     public static $THEATER = [
-        'm-1' => 'Мариинский театр-1',
-        'm-2' => 'Мариинский театр-2',
-        'mix' => 'Михайловский театр',
+        'm-1'       => 'Мариинский театр-1',
+        'm-2'       => 'Мариинский театр-2',
+        'mix'       => 'Михайловский театр',
         'spb-opera' => 'Театр Санкт-Петербург Опера',
-        'cap' => 'Гос.академ. капелла СПб',
-        'etc' => 'Другие площадки',
+        'cap'       => 'Гос.академ. капелла СПб',
+        'etc'       => 'Другие площадки',
     ];
 
     public function __construct()
@@ -26,6 +26,16 @@ class Model
     {
         Main::$pdo->query("
             SELECT * from ".static::TABLENAME."
+            ORDER BY ".static::TABLENAME.".date ASC
+        ");
+        $data = Main::$pdo->resultset();
+        return $data;
+    }
+
+    public static function selectAllAfterToday()
+    {
+        Main::$pdo->query("
+            SELECT * from ".static::TABLENAME."
             WHERE date >= CURRENT_DATE
             ORDER BY ".static::TABLENAME.".date ASC
         ");
@@ -33,9 +43,23 @@ class Model
         return $data;
     }
 
+    public static function selectSingle($id)
+    {
+        Main::$pdo->query("
+            SELECT
+                events.*,
+                concat(composers.firstName, ' ', composers.lastName) as composer    
+            FROM ".static::TABLENAME."
+                LEFT JOIN composers ON events.composer_id = composers.id
+            WHERE events.id = :id
+        ");
+        Main::$pdo->bind(":id", $id);
+        return Main::$pdo->single();
+    }
+
+
     public static function prepareData($data)
     {
-
         $data = array_map(function ($item) {
             $result = [];
             $item = array_merge($item, array_fill_keys(self::$THEATER, ''));
@@ -46,19 +70,26 @@ class Model
             $result[$dateFormat] = $item;
             return $result;
         }, $data);
-        /*foreach ($data as $key => $event) {
-
-            //$month = DateTransformer::getCyrillicMonth($date->format('m'));
-            // склеивание мероприятий, проходящих в один день
-            if (isset($result[$dateFormat][$theater])) {
-                $result[$dateFormat][$dateFormat]['author'] = array($result[$month][$dateFormat]['author'], $event['author']);
-                $result[$month][$dateFormat]['theater'] = array($result[$month][$dateFormat]['theater'], $event['theater']);
-                $result[$month][$dateFormat]['title'] = array($result[$month][$dateFormat]['title'], $event['title']);
-            }
-            else {
-                $result[$dateFormat][$theater][] = $event;
-            }
-        }*/
         return $data;
+    }
+
+    public static function updatePoster($data)
+    {
+        if (!empty($data)) {
+            var_dump(array_pop(explode(' ', $data['composer'])));
+            Main::$pdo->query("UPDATE event SET title = :title, author = :composer, composer_id = :composer_id, date = :date, theater = :theater WHERE id = :id");
+            Main::$pdo->bind(":title", !empty($data['title']) ? $data['title'] : '');
+            Main::$pdo->bind(":composer", !empty($data['composer']) ? array_pop(explode(' ', $data['composer'])) : '');
+            Main::$pdo->bind(':composer_id', !empty($data['composer_id']) ? $data['composer_id'] : null);
+            Main::$pdo->bind(':date', !empty($data['date']) ? $data['date'] : null);
+            Main::$pdo->bind(":theater", !empty($data['theater']) ? array_keys(\Pages\Poster\Model::$THEATER)[$data['theater']] : '');
+            Main::$pdo->execute();
+        }
+        return $data;
+    }
+
+    public static function createPoster($data)
+    {
+        var_dump($data);
     }
 }
