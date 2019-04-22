@@ -9,7 +9,7 @@
             <span>Композитор</span>
             <select name="composer" id="composer" class="poster_select">
                 <option value=""></option>
-                <?php foreach ($data['composers'] as $composer) : ?>
+                <?php foreach ($data['mozartverdi'] as $composer) : ?>
                 <option value="<?= $composer['id'] ?>"><?= $composer['firstName'].' '.$composer['lastName'] ?></option>
                 <?php endforeach; ?>
             </select>
@@ -52,7 +52,7 @@
                 <tr>
                     <td style="width:80px;"><?= $event['date']; ?></td>
                     <?php foreach(\Pages\Poster\Model::$THEATER as $theater => $translate): ?>
-                    <td><?= $event[$theater]; ?></td>
+                    <td><a class="clear_link" href="//<?= $event['ticket_link']; ?>"><?= $event[$theater]; ?></a></td>
                     <?php endforeach; ?>
                 </tr>
                 <?php endforeach; ?>

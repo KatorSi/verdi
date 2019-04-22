@@ -43,6 +43,7 @@ class Model
         return $data;
     }
 
+
     public static function selectSingle($id)
     {
         Main::$pdo->query("
@@ -76,13 +77,18 @@ class Model
     public static function updatePoster($data)
     {
         if (!empty($data)) {
-            var_dump(array_pop(explode(' ', $data['composer'])));
-            Main::$pdo->query("UPDATE event SET title = :title, author = :composer, composer_id = :composer_id, date = :date, theater = :theater WHERE id = :id");
+            //var_dump(array_flip(\Pages\Poster\Model::$THEATER)[$data['theater']]);
+            //var_dump(array_pop(explode(' ', $data['composer'])));
+            //var_dump($data['theater']);
+            //var_dump(\Pages\Poster\Model::$THEATER[$data['theater']]);
+            Main::$pdo->query("UPDATE events SET title = :title, author = :composer, date = :date, theater = :theater, composer_id = :composer_id, ticket_link = :ticket_link WHERE id = :id");
+            Main::$pdo->bind(':id', $data['id']);
             Main::$pdo->bind(":title", !empty($data['title']) ? $data['title'] : '');
             Main::$pdo->bind(":composer", !empty($data['composer']) ? array_pop(explode(' ', $data['composer'])) : '');
-            Main::$pdo->bind(':composer_id', !empty($data['composer_id']) ? $data['composer_id'] : null);
+            Main::$pdo->bind(':composer_id', !empty($data['composer_id']) ? $data['composer_id'] : 0);
             Main::$pdo->bind(':date', !empty($data['date']) ? $data['date'] : null);
-            Main::$pdo->bind(":theater", !empty($data['theater']) ? array_keys(\Pages\Poster\Model::$THEATER)[$data['theater']] : '');
+            Main::$pdo->bind(":theater", !empty($data['theater']) ? array_flip(\Pages\Poster\Model::$THEATER)[$data['theater']] : '');
+            Main::$pdo->bind(':ticket_link', !empty($data['ticket_link']) ? $data['ticket_link'] : '');
             Main::$pdo->execute();
         }
         return $data;

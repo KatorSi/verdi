@@ -38,6 +38,7 @@ class Controller extends \Pages\Abstractions\Page
         $content = [
             'body' => [
                 'composers' => \Pages\Composer\Model::selectAll(),
+                'mozartverdi' => \Pages\Composer\Model::selectVerdiMozart(),
                 'events' => \Pages\Poster\Model::selectAllAfterToday(),
                 'back' => ''
             ],

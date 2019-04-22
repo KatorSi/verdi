@@ -41,6 +41,13 @@
                             <small class="form-text"></small>
                         </div>
                     </div>
+                    <div class="col">
+                        <label>Ссылка на билет</label>
+                        <div>
+                            <input type="text" name="ticket_link" placeholder="Ссылка на билет" value="<?= $data['poster']['ticket_link']; ?>" class="form-control" autocomplete="off">
+                            <small class="form-text"></small>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

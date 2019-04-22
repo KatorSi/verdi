@@ -1,3 +1,5 @@
+var alertModal = $('#alertModal');
+
 function updatePoster() {
     $.ajaxSetup({url: '/dashboard/poster/update/'});
     var fs = new FormService('.poster-form');

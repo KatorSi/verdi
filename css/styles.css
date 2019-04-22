@@ -318,6 +318,10 @@ tr td .td-poster-margin:first-child {
 .align-middle {
     vertical-align: middle !important;
 }
+.clear_link, .clear_link:hover {
+    text-decoration: none;
+    color: #323232;
+}
 
 /** END posters **/
 

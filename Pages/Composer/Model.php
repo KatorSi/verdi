@@ -148,6 +148,18 @@ WHERE files.type = 'books' AND files.owner = 'composer' AND files.owner_id = :id
         return $composer;
     }
 
+    public static function selectVerdiMozart()
+    {
+        Main::$pdo->query("
+            SELECT * from composers
+            WHERE id = :mozart OR id = :verdi
+        ");
+        Main::$pdo->bind(':mozart', 39);
+        Main::$pdo->bind(':verdi', 132);
+        $data = Main::$pdo->resultset();
+        return $data;
+    }
+
     public static function selectFullNameById($id)
     {
         $id = intval($id);
