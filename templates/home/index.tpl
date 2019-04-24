@@ -94,7 +94,7 @@
                         <td style="width: 150px;"><?php echo $composer['city']; ?></td>
                         <td style="width: 150px;"><?= $composer['genre']; ?></td>
                         <td class="text-right"><?= ($composer['opera'] == true) ? $composer['opera'] : ''; ?></td>
-                        <td class="text-right"><?= ($composer['symfony'] == true) ? $composer['symfony'] : ''; ?></td>
+                        <td class="text-right"><?= ($composer['symphony'] == true) ? $composer['symphony'] : ''; ?></td>
                         <td class="text-right"><?= ($composer['concert'] == true) ? $composer['concert'] : ''; ?></td>
                         <td class="text-right"><?= ($composer['sonata'] == true) ? ✓ : ''; ?></td>
                         <td class="text-center"><?= ($composer['brass'] == true) ? ✓ : ''; ?></td>

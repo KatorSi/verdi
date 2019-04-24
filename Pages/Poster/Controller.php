@@ -29,7 +29,6 @@ class Controller extends \Pages\Abstractions\Page
 
     public function response($data)
     {
-        error_log('response 404', 3, \Config::$errorLog);
         return parent::notFound(true);
     }
 
@@ -40,20 +39,10 @@ class Controller extends \Pages\Abstractions\Page
                 'composers' => \Pages\Composer\Model::selectAll(),
                 'mozartverdi' => \Pages\Composer\Model::selectVerdiMozart(),
                 'events' => \Pages\Poster\Model::selectAllAfterToday(),
-                'back' => ''
+                'works' => \Pages\Works\Model::selectAll(),
+                'back' => '',
             ],
         ];
         return self::fullTemplate($this->templates['default'], $content, $this->assets);
-    }
-
-    public function test()
-    {
-        $content = [
-            'body' => [
-                'test' => 'test'
-            ]
-        ];
-
-        return self::fullTemplate($this->templates['test'], $content);
     }
 }

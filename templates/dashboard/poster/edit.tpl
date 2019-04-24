@@ -4,16 +4,19 @@
             <h4>Редактировать запись</h4>
         </div>
         <div class="card-body">
-            <?php //var_dump($data); ?>
+            <?php $_SESSION['lastId'] = $data['poster']['id']; ?>
             <p>Основная информация</p>
             <form class="poster-form">
                 <div class="form-group form-row">
                     <div class="col">
                         <label>Название</label>
-                        <div>
-                            <input type="text" name="title" value="<?= $data['poster']['title'] ?>" placeholder="Название" class="form-control" autocomplete="off">
+                        <div class="has-input-autocomplete">
+                            <input type="text" name="works" value="<?= $data['poster']['title'] ?>" placeholder="Название" class="form-control" autocomplete="off" data-autocomplete="works">
+                            <span class="plus-icon" onclick="$('#workAddModal').modal('show')"></span>
+                            <input type="hidden" name="addit_id" value="<?= $data['poster']['composer_id'] ?>" class="form-control" autocomplete="off">
                             <input type="hidden" name="id" value="<?= $data['poster']['id'] ?>" class="form-control" autocomplete="off">
                             <small class="form-text"></small>
+                            <div class="dropdown-menu" data-autocompleteList="works"></div>
                         </div>
                     </div>
                     <div class="col">
@@ -30,14 +33,18 @@
                     <div class="col">
                         <label>Дата</label>
                         <div>
-                            <input type="text" name="date" placeholder="Дата" value="<?= $data['poster']['date'] ?>" class="form-control" autocomplete="off">
+                            <input type="date" name="date" placeholder="Дата" value="<?= $data['poster']['date']; ?>" class="form-control" autocomplete="off">
                             <small class="form-text"></small>
                         </div>
                     </div>
                     <div class="col">
                         <label>Театр</label>
                         <div>
-                            <input type="text" name="theater" placeholder="Театр" value="<?= \Pages\Poster\Model::$THEATER[$data['poster']['theater']]; ?>" class="form-control" autocomplete="off">
+                            <select class="form-control" name="theater">
+                                <?php foreach(\Pages\Poster\Model::$THEATER as $code => $theater) : ?>
+                                <option value="<?= $code; ?>" <?= (\Pages\Poster\Model::$THEATER[$data['poster']['theater']] == $theater) ? 'selected' : ''; ?>><?= $theater; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                             <small class="form-text"></small>
                         </div>
                     </div>
@@ -66,6 +73,32 @@
                 </button>
             </div>
             <div class="modal-body response-message">Элемент не сохранен</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="workAddModal" tabindex="-1" role="dialog" aria-labelledby="workAddModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="workAddModalTitle">Добавление произведения</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group form-row">
+                    <div class="col">
+                        <input class="form-control" type="text" name="work-title" value="" placeholder="Название" autocomplete="off">
+                        <input type="hidden" name="work-composer-id" value="<?= $data['poster']['composer_id']; ?>">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <button class="btn btn-success" onclick="createWork()">Добавить</button>
+                </div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
             </div>

@@ -1,2 +1,3 @@
 <?php echo $data['header']; ?>
-<div class="content-body"></div>
+<?php echo $data['header_about']; ?>
+<div class="content-body">Здесь будет библиография</div>

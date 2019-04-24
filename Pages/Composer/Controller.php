@@ -13,12 +13,15 @@ class Controller extends \Pages\Abstractions\Page
 {
     private static $templates = [
         'default'      => 'composer/biography',
+        'biography'    => 'composer/biography',
         'operas'       => 'composer/operas',
         'bibliography' => 'composer/bibliography',
-        'movies'       => 'composer/movies',
+        'films'        => 'composer/films',
         'facts'        => 'composer/facts',
         'header'       => 'composer/header',
-        'about'        => 'composer/biography',
+        'header_works' => 'composer/header_works',
+        'header_about' => 'composer/header_about',
+        'about'        => 'composer/about',
 
         'singleOpera'      => 'operas/single',
         'descriptionOpera' => 'operas/description',
@@ -49,12 +52,13 @@ class Controller extends \Pages\Abstractions\Page
             $composer = Model::selectSingle($composerId);
             $data = [
                 'composer'   => $composer,
-                'active'     => 'biography',
+                'active'     => 'about',
                 'operaTitle' => 'Биография',
             ];
 
             $data['header'] = parent::template(self::$templates['header'], $data);
-            return parent::fullTemplate(self::$templates['default'], ['body' => $data]);
+            $data['header_about'] = parent::template(self::$templates['header_about'], $data);
+            return parent::fullTemplate(self::$templates['biography'], ['body' => $data]);
         } else {
             return parent::notFound(true);
         }
@@ -73,6 +77,7 @@ class Controller extends \Pages\Abstractions\Page
 
             if (0 === $operaId) {
                 $dataPage['header'] = self::template(self::$templates['header'], $dataPage, $this->assets);
+                $dataPage['header_works'] = self::template(self::$templates['header_works'], $dataPage);
                 $dataPage['operas'] = \Pages\Opera\Model::selectSingleMult($composerId);
 
                 return parent::fullTemplate(self::$templates['operas'], ['body' => $dataPage]);
@@ -115,25 +120,26 @@ class Controller extends \Pages\Abstractions\Page
             ];
 
             $data['header'] = parent::template(self::$templates['header'], $data);
+            $data['header_about'] = parent::template(self::$templates['header_about'], $data);
             return parent::fullTemplate(self::$templates['bibliography'], ['body' => $data]);
         } else {
             return parent::notFound(true);
         }
     }
 
-    public function movies($data)
+    public function films($data)
     {
         $composerId = intval($data['composerId']);
-
         if ($composerId > 0) {
             $composer = Model::selectSingle($composerId);
             $data = [
                 'composer' => $composer,
-                'active'   => 'movies',
+                'active'   => 'films',
             ];
 
             $data['header'] = parent::template(self::$templates['header'], $data);
-            return parent::fullTemplate(self::$templates['movies'], ['body' => $data]);
+            $data['header_about'] = parent::template(self::$templates['header_about'], $data);
+            return parent::fullTemplate(self::$templates['films'], ['body' => $data]);
         } else {
             return parent::notFound(true);
         }
@@ -171,6 +177,7 @@ class Controller extends \Pages\Abstractions\Page
         }
 
         $data['header'] = parent::template(self::$templates['header'], $data);
+        $data['header_about'] = parent::template(self::$templates['header_about'], $data);
         return parent::fullTemplate(self::$templates['about'], ['body' => $data]);
     }
 }

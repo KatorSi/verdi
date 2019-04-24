@@ -1,11 +1,12 @@
 function AutocompleteService() {
 }
 
-AutocompleteService.prototype.requestArray = function (route) {
+AutocompleteService.prototype.requestArray = function (route, id) {
     return $.ajax({
         url: route,
         data: {
-            name: 'select'
+            name: 'select',
+            additId: id
         }
     })
 };
@@ -20,7 +21,8 @@ function prepareAutocompletes() {
     var target = this.dataset.autocomplete,
         completeArray = [],
         that = this,
-        autoComplete = new AutocompleteService;
+        autoComplete = new AutocompleteService,
+        additId = $(this).siblings('input[name="addit_id"]').val();
 
     var createAutoCompleteButton = function (data, target) {
         var btn = $('<button class="dropdown-item" type="button"></button>');
@@ -32,7 +34,7 @@ function prepareAutocompletes() {
     };
 
     $('[data-autocompleteList=' + target + ']').html('');
-    autoComplete.requestArray('/dashboard/' + target).done(function (res) {
+    autoComplete.requestArray('/dashboard/' + target, additId).done(function (res) {
         if (res) {
             res = JSON.parse(res);
             if (!res.error) {

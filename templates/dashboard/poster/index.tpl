@@ -7,29 +7,40 @@
         <div class="dropdown-divider"></div>
         <div>
             <?php if(!empty($data)) : ?>
-            <? //var_dump($data); ?>
             <div class="list-group">
                 <?php foreach($data as $poster) : ?>
-                <a href="<?= \Config::$host . 'dashboard/poster/' . $poster['id'] ?>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center pointer" data-poster="<?=$poster['id']?>">
-                    <div class="col">
-                        <p><?= $poster['author']; ?></p>
+                <?php
+                    $lastId = $_SESSION['lastId'];
+                    $class = !empty($poster['ticket_link']) ? '' : 'bg-gray';
+                    $class = ($poster['id'] == $lastId) ? 'bg-lightyellow' : $class;
+                ?>
+                <div class="list-group-item list-group-item-action d-flex align-items-center <?= $class ?>" data-poster="<?=$poster['id']?>">
+                    <a href="<?= \Config::$host . 'dashboard/poster/' . $poster['id'] ?>" class="d-flex justify-content-between align-items-center pointer text-center">
+                        <div class="col">
+                            <p><?= (new \DateTime($poster['date']))->format('d.m.Y'); ?></p>
+                        </div>
+                        <div class="col">
+                            <p><?= $poster['title']; ?></p>
+                        </div>
+                        <div class="col">
+                            <p><?= \Pages\Poster\Model::$THEATER[$poster['theater']]; ?></p>
+                        </div>
+                        <div class="col">
+                            <p><?= $poster['author']; ?></p>
+                        </div>
+                    </a>
+                    <div class="min-col text-center">
+                        <span class="badge badge-danger badge-pill badge-button" onclick="deletePoster(<?= $poster['id']; ?>)">
+							<i class="fa fa-remove" aria-hidden="true"></i>
+						</span>
                     </div>
-                    <div class="col">
-                        <label>Дата</label>
-                        <p><?= $poster['date']; ?></p>
-                    </div>
-                    <div class="col">
-                        <label>Название произведения</label>
-                        <p><?= $poster['title']; ?></p>
-                    </div>
-                    <div class="col">
-                        <label>Театр</label>
-                        <p><?= \Pages\Poster\Model::$THEATER[$poster['theater']]; ?></p>
-                    </div>
-                </a>
+                </div>
                 <?php endforeach;?>
             </div>
             <?php endif;?>
+        </div>
+        <div class="pt-3">
+            <button type="button" class="btn btn-outline-info float-right" data-toggle="modal" data-target="#newPosterModal">Добавить</button>
         </div>
     </div>
 </div>

@@ -2966,6 +2966,14 @@ a > code {
   margin-bottom: 15px;
 }
 
+.bg-gray, .bg-gray:hover {
+  background-color: lightgray;
+}
+.bg-lightyellow, .bg-lightyellow:hover {
+  background-color: lightyellow;
+}
+
+
 @media (min-width: 576px) {
   .card-deck {
     margin-right: -15px;

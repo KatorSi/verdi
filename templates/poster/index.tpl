@@ -8,7 +8,7 @@
         <div class="col-lg-6 sub-top-menu-item">
             <span>Композитор</span>
             <select name="composer" id="composer" class="poster_select">
-                <option value=""></option>
+                <option value="">Все</option>
                 <?php foreach ($data['mozartverdi'] as $composer) : ?>
                 <option value="<?= $composer['id'] ?>"><?= $composer['firstName'].' '.$composer['lastName'] ?></option>
                 <?php endforeach; ?>
@@ -29,7 +29,7 @@
         <table class="table table-default main-table">
             <thead>
             <tr>
-                <td style="width:80px;" class="date">Дата</td>
+                <td style="width:105px;" class="date align-middle">Дата</td>
                 <?php foreach(\Pages\Poster\Model::$THEATER as $key => $theater) : ?>
                 <td class="align-middle"><?= $theater; ?></td>
                 <?php endforeach; ?>
@@ -50,9 +50,9 @@
                 <?php foreach($data['events'] as $key => $date): ?>
                 <?php foreach($date as $eventKey => $event): ?>
                 <tr>
-                    <td style="width:80px;"><?= $event['date']; ?></td>
+                    <td style="width:105px;"><?= $event['date']; ?>&nbsp;&nbsp;&nbsp;&nbsp;<?= \Helpers\Transformers\DateTransformer::getCyrillicDay((new DateTime(array_keys($date)[0]))->format('D')); ?></td>
                     <?php foreach(\Pages\Poster\Model::$THEATER as $theater => $translate): ?>
-                    <td><a class="clear_link" href="//<?= $event['ticket_link']; ?>"><?= $event[$theater]; ?></a></td>
+                    <td><a class="<?= empty($event['ticket_link']) ? 'clear_link' : 'alm_clear_link'?>" href="<?= $event['ticket_link']; ?>" target="_blank"><?= !empty($event[$theater]) ? $event[$theater] : ''; ?></a></td>
                     <?php endforeach; ?>
                 </tr>
                 <?php endforeach; ?>

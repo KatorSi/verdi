@@ -1,3 +1,21 @@
 .pointer {
     cursor: pointer;
 }
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.plus-icon {
+    width: 24px;
+    height: 24px;
+    background: url(../../img/plus_icon.png) no-repeat center;
+    background-size: contain;
+    position: absolute;
+    top: 37px;
+    right: 10px;
+    cursor: pointer;
+}

@@ -77,17 +77,13 @@ class Model
     public static function updatePoster($data)
     {
         if (!empty($data)) {
-            //var_dump(array_flip(\Pages\Poster\Model::$THEATER)[$data['theater']]);
-            //var_dump(array_pop(explode(' ', $data['composer'])));
-            //var_dump($data['theater']);
-            //var_dump(\Pages\Poster\Model::$THEATER[$data['theater']]);
             Main::$pdo->query("UPDATE events SET title = :title, author = :composer, date = :date, theater = :theater, composer_id = :composer_id, ticket_link = :ticket_link WHERE id = :id");
             Main::$pdo->bind(':id', $data['id']);
-            Main::$pdo->bind(":title", !empty($data['title']) ? $data['title'] : '');
+            Main::$pdo->bind(":title", !empty($data['works']) ? $data['works'] : '');
             Main::$pdo->bind(":composer", !empty($data['composer']) ? array_pop(explode(' ', $data['composer'])) : '');
             Main::$pdo->bind(':composer_id', !empty($data['composer_id']) ? $data['composer_id'] : 0);
             Main::$pdo->bind(':date', !empty($data['date']) ? $data['date'] : null);
-            Main::$pdo->bind(":theater", !empty($data['theater']) ? array_flip(\Pages\Poster\Model::$THEATER)[$data['theater']] : '');
+            Main::$pdo->bind(":theater", !empty($data['theater']) ? $data['theater'] : '');
             Main::$pdo->bind(':ticket_link', !empty($data['ticket_link']) ? $data['ticket_link'] : '');
             Main::$pdo->execute();
         }
@@ -96,6 +92,29 @@ class Model
 
     public static function createPoster($data)
     {
-        var_dump($data);
+        if (!empty($data)) {
+            Main::$pdo->query("INSERT INTO ".static::TABLENAME." (date, title, theater, author, composer_id, ticket_link)
+            VALUES (:date, :title, :theater, :author, :composer_id, :ticket_link)");
+            Main::$pdo->bind(":date", $data['date']);
+            Main::$pdo->bind(":title", $data['title']);
+            Main::$pdo->bind(":theater", $data['theater']);
+            Main::$pdo->bind(":author", $data['composer']);
+            Main::$pdo->bind(":composer_id", $data['composer_id']);
+            Main::$pdo->bind(":ticket_link", $data['ticket_link']);
+            try {
+                Main::$pdo->execute();
+            }
+            catch (\Exception $e) {
+                return ['status' => 'error', 'message' => $e->getMessage()];
+            }
+            return self::selectAll();
+        }
+    }
+
+    public static function removePoster($id)
+    {
+        Main::$pdo->query("DELETE FROM ".self::TABLENAME." WHERE id = :id");
+        Main::$pdo->bind(':id', $id);
+        return Main::$pdo->execute();
     }
 }

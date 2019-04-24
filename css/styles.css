@@ -285,6 +285,9 @@ a[data-target="#lk_page"] {
 /** END new styles **/
 
 /** START posters **/
+#target {
+    margin-right: 17px;
+}
 
 .content-header-top-menu.poster-title {
     padding-top: 10px;
@@ -321,6 +324,14 @@ tr td .td-poster-margin:first-child {
 .clear_link, .clear_link:hover {
     text-decoration: none;
     color: #323232;
+}
+.alm_clear_link {
+    color: #323232;
+    text-decoration: none;
+}
+.alm_clear_link:hover {
+    color: #323232;
+    text-decoration: underline;
 }
 
 /** END posters **/
