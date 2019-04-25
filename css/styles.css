@@ -138,7 +138,7 @@ ul > li{
 .content-body.opera {
     padding: 0 30px;
     overflow-y: auto;
-    max-height: calc(100% - 110px);
+    max-height: calc(100% - 114px);
     position: relative;
 }
 .page-wrap-footer > ul {
@@ -281,6 +281,31 @@ div .active {
 }
 a[data-target="#lk_page"] {
     cursor: pointer;
+}
+.one-digit {
+    text-align: right;
+    padding-right: 11px !important;
+}
+.two-digits {
+    text-align: center;
+    padding-right: 0 !important;
+}
+.bio {
+    padding: 0 50px;
+    overflow-y: auto;
+    max-height: calc(100% - 55px);
+    position: relative;
+    text-indent: 20px;
+}
+.sub-top-menu-opera {
+    padding-top: 8px;
+}
+.opera-about {
+    padding: 0 50px;
+    overflow-y: auto;
+    max-height: calc(100% - 59px);
+    position: relative;
+    text-indent: 20px;
 }
 /** END new styles **/
 

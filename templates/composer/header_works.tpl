@@ -18,12 +18,12 @@
             <?php endif; ?>
             <?php if (!empty($data['composer']['sonata'])): ?>
             <li <?= ($data['active'] == 'sonatas') ? 'class="active"' : '' ?>>
-            <a href="<?= $baseLink.'sonatas'; ?>">Сонаты(<?= $data['composer']['sonata'] ?>)</a>
+            <a href="<?= $baseLink.'sonatas'; ?>">Сонаты</a>
             </li>
             <?php endif; ?>
             <?php if (!empty($data['composer']['brass']) || !empty($data['composer']['instrumental']) || !empty($data['composer']['vocal'])): ?>
             <li <?= ($data['active'] == 'others') ? 'class="active"' : '' ?>>
-            <a href="<?= $baseLink.'others'; ?>">Другие произведения(<?= $data['composer']['brass'] + $data['composer']['instrumental'] + $data['composer']['vocal']; ?>)</a>
+            <a href="<?= $baseLink.'others'; ?>">Другие произведения</a>
             </li>
             <?php endif; ?>
         </ul>

@@ -93,10 +93,15 @@
                         <td style="width: 120px;"><?= $composer['country']; ?></td>
                         <td style="width: 150px;"><?php echo $composer['city']; ?></td>
                         <td style="width: 150px;"><?= $composer['genre']; ?></td>
-                        <td class="text-right"><?= ($composer['opera'] == true) ? $composer['opera'] : ''; ?></td>
-                        <td class="text-right"><?= ($composer['symphony'] == true) ? $composer['symphony'] : ''; ?></td>
-                        <td class="text-right"><?= ($composer['concert'] == true) ? $composer['concert'] : ''; ?></td>
-                        <td class="text-right"><?= ($composer['sonata'] == true) ? ✓ : ''; ?></td>
+                        <?php
+                            $operaDigit = strlen((string)$composer['opera']);
+                            $symphonyDigit = strlen((string)$composer['symphony']);
+                            $concertDigit = strlen((string)$composer['concert']);
+                        ?>
+                        <td class="<?= ($operaDigit == 1) ? 'one-digit' : (($operaDigit == 2) ? 'two-digits' : 'text-center') ?>"><?= ($composer['opera'] == true) ? $composer['opera'] : ''; ?></td>
+                        <td class="<?= ($symphonyDigit == 1) ? 'one-digit' : ($symphonyDigit == 2 ? 'two-digits' : 'text-center') ?>"><?= ($composer['symphony'] == true) ? $composer['symphony'] : ''; ?></td>
+                        <td class="<?= ($concertDigit == 1) ? 'one-digit' : ($concertDigit == 2 ? 'two-digits' : 'text-center') ?>"><?= ($composer['concert'] == true) ? $composer['concert'] : ''; ?></td>
+                        <td class="text-center"><?= ($composer['sonata'] == true) ? ✓ : ''; ?></td>
                         <td class="text-center"><?= ($composer['brass'] == true) ? ✓ : ''; ?></td>
                         <td class="text-center"><?= ($composer['instrumental'] == true) ? ✓ : ''; ?></td>
                         <td class="text-center"><?= ($composer['vocal'] == true) ? ✓ : ''; ?></td>

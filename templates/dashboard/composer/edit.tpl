@@ -88,7 +88,7 @@
                         <input type="checkbox" name="sonata" <?= ($data['sonata'] == true) ? checked : ''; ?> value="" class="form-control" autocomplete="off">
                     </div>
                     <div class="col">
-                        <label class="text-center">Духовые</label>
+                        <label class="text-center">Духовная</label>
                         <input type="checkbox" name="brass" <?= ($data['brass'] == true) ? checked : ''; ?> value="" class="form-control" autocomplete="off">
                     </div>
                     <div class="col">

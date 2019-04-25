@@ -31,7 +31,7 @@
             <tbody>
             <?php if(!empty($data['operas'])) :
                 foreach($data['operas'] as $opera) : ?>
-                    <tr id="<?php echo $opera['id']; ?>" style="cursor: pointer;" onclick="location.href = '/composer/<?php echo $opera['composer_id']; ?>/operas/<?php echo $opera['id']; ?>'">
+                    <tr id="<?php echo $opera['id']; ?>" style="cursor: pointer;" onclick="location.href = '/composer/<?php echo $opera['composer_id']; ?>/operas/<?php echo $opera['id']; ?>/films'">
                         <td class="year"><?=$opera['premiereYear'] !== '0000' ? $opera['premiereYear'] :'';?></td>
                         <td><?=$opera['title'];?></td>
                         <td><?=$opera['basedOn'];?></td>

@@ -17,13 +17,20 @@ class Controller extends \Pages\Abstractions\Page
         'operas'       => 'composer/operas',
         'bibliography' => 'composer/bibliography',
         'films'        => 'composer/films',
+        'videos'       => 'composer/films',
         'facts'        => 'composer/facts',
         'header'       => 'composer/header',
         'header_works' => 'composer/header_works',
         'header_about' => 'composer/header_about',
         'about'        => 'composer/about',
 
+        'header_opera'          => 'operas/header_opera',
+        'header_opera_about'    => 'operas/header_about',
+        'main_header'           => 'operas/main_header',
+
         'singleOpera'      => 'operas/single',
+        'filmsOpera'       => 'operas/films',
+        'aboutOpera'       => 'operas/about',
         'descriptionOpera' => 'operas/description',
         'scoreOpera'       => 'operas/score',
         'clavierOpera'     => 'operas/clavier',
@@ -68,7 +75,6 @@ class Controller extends \Pages\Abstractions\Page
     {
         $composerId = intval($data['composerId']);
         $operaId = intval($data['id']);
-
         if ($composerId > 0) {
             $composer = Model::selectSingle($composerId);
             $dataPage = [];
@@ -89,16 +95,20 @@ class Controller extends \Pages\Abstractions\Page
                 $dataPage['page'] = isset($data['page']) ? $data['page'] : '';
                 $dataPage['pageTitle'] = '';
 
-                switch($dataPage['page']){
-                    case '':
+                switch($dataPage['page']) {
+                    case 'about':
                         $dataPage['pageTitle'] = 'История создания';
+                        $dataPage['active'] = 'opera_about';
+                        $dataPage['header_opera_about'] = self::template(self::$templates['header_opera_about'], $dataPage);
                         break;
                     case 'description':
                         $dataPage['pageTitle'] = 'Краткое содержание';
+                        $dataPage['active'] = 'opera_desc';
+                        $dataPage['header_opera_about'] = self::template(self::$templates['header_opera_about'], $dataPage);
                         break;
                 }
-
-                $dataPage['header'] = self::template(self::$templates['header'], $dataPage, $this->assets);
+                $dataPage['main_header'] = self::template(self::$templates['main_header'], $dataPage, $this->assets);
+                $dataPage['header_opera'] = self::template(self::$templates['header_opera'], $dataPage);
 
                 return parent::fullTemplate(isset($data['page']) && !empty($data['page']) ? self::$templates[$data['page'].'Opera'] : self::$templates['singleOpera'], ['body' => $dataPage]);
             }

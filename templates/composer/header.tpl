@@ -13,7 +13,7 @@
             <div class="btn-back" data-backfunc="customBackFunc"><a href="<?php echo \Config::$host . (isset($data['back']) ? $data['back'] : '') ?>"> &lt;&lt;&nbsp;назад</a></div>
         </div>
         <div class="col-lg-1 col-lg-offset-1 menu-item">
-            <a <?= ($data['active'] !== 'about') ? 'class="active"' : '' ?> href="<?= $baseLink.'operas' ?>">Произведения</a>
+            <a <?= ($data['active'] == 'operas') ? 'class="active"' : '' ?> href="<?= $baseLink.'operas' ?>">Произведения</a>
         </div>
         <div class="col-lg-6 col-lg-offset-1 menu-item text-right">
             <a <?= ($data['active'] == 'about' || $data['active'] == 'bibliography' || $data['active'] == 'films') ? 'class="active"' : '' ?> href="<?= $baseLink.'biography'?>">О композиторе</a>

@@ -62,7 +62,7 @@ class Model
         Main::$pdo->bind(':opera', isset($data['opera']) ? $data['opera'] : '');
         Main::$pdo->bind(':symphony', isset($data['symphony']) ? $data['symphony'] : '');
         Main::$pdo->bind(':concert', isset($data['concert']) ? $data['concert'] : '');
-        Main::$pdo->bind(':sonata', isset($data['sonata']) ? $data['sonata'] : '');
+        Main::$pdo->bind(':sonata', isset($data['sonata']) ? 1 : 0);
         Main::$pdo->bind(':brass', isset($data['brass']) ? 1 : 0);
         Main::$pdo->bind(':instrumental', isset($data['instrumental']) ? 1 : 0);
         Main::$pdo->bind(':vocal', isset($data['vocal']) ? 1 : 0);
